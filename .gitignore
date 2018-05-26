@@ -1,0 +1,6 @@
+elpa
+var/*.el
+var/auto-save
+var/backup/*
+custom.el
+var/company
