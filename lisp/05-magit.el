@@ -22,7 +22,7 @@
          ("C-c v d" . magit-dispatch-popup)
          ("C-c v g" . magit-blame)
          ("C-c v l" . magit-log-buffer-file)
-         ("C-c v v" . magit-status)
+         ("C-x g" . magit-status)
          (:map magit-mode-map
                ([remap previous-line] . magit-previous-line)
                ([remap next-line] . magit-next-line))
