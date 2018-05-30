@@ -11,6 +11,10 @@
 
 ;;; Code:
 
+;;; Env stuff
+(setenv "JAVA_HOME" ;; lein won't work with Java 9+
+        "/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home")
+
 ;;; Clojure
 (use-package cider                      ; Clojure development environment
   :ensure t

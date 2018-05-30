@@ -144,6 +144,7 @@
 
 (use-package diff-hl                    ; Show changes in fringe
   :ensure t
+  :pin "melpa-unstable"                 ; No stable releases to fix magit post refresh
   :hook ((prog-mode          . diff-hl-mode)
          (dired-mode         . diff-hl-dired-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
