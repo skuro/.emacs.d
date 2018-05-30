@@ -80,11 +80,6 @@
   :hook (visual-line-mode . adaptive-wrap-prefix-mode)
   :config (setq-default adaptive-wrap-extra-indent 2))
 
-(use-package aggressive-fill-paragraph  ; Automatically fill paragrah
-  :ensure t
-  :hook ((org-mode . aggressive-fill-paragraph-mode)
-         (TeX-mode . aggressive-fill-paragraph-mode)))
-
 (use-package visual-fill-column         ; Fill column wrapping
   :ensure t
   :bind ("C-c t v" . visual-fill-column-mode)
