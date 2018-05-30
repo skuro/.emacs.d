@@ -127,17 +127,20 @@
 (skuro/rename-modeline "js2-mode" js2-mode "JS2")
 
 (use-package minions                    ; A minor-mode menu for the mode line
-             :ensure t
-             :init (minions-mode)
-             :config (validate-setq minions-direct '(cider-mode
-                                                     flycheck-mode
-                                                     overwrite-mode)))
+  :ensure t
+  :init (minions-mode)
+  :config (validate-setq minions-direct '(cider-mode
+                                          flycheck-mode
+                                          overwrite-mode)))
 
 (use-package moody                      ; Tabs and ribbons for the mode line
-             :ensure t
-             :config
-             (moody-replace-mode-line-buffer-identification)
-             (moody-replace-vc-mode))
+  :ensure t
+  :config
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+
+  (if (string-equal system-type "darwin") ; OS X has a weird color scheme
+      (setq moody-slant-function #'moody-slant-apple-rgb)))
 
 (use-package paren                      ; Highlight paired delimiters
   :init (show-paren-mode))
