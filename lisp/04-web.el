@@ -39,6 +39,13 @@
   ;; Try to highlight most ECMA built-ins
   (validate-setq js2-highlight-level 3))
 
+(use-package json-mode
+  :mode (("\\.json\\'" . json-mode)
+         ("\\.json.template\\'" . json-mode))
+  :hook (json-mode . enable-paredit-mode)
+  :config
+  (bind-key "{" #'paredit-open-curly json-mode-map)
+  (bind-key "}" #'paredit-close-curly json-mode-map))
 
 (provide '04-web)
 

@@ -35,6 +35,13 @@
   (validate-setq org-agenda-files '("/Users/skuro/Dropbox/org"
                                     "/Users/skuro/Dropbox/org/synple"))
 
+  ;; Evaluate code blocks
+  (validate-setq org-babel-load-languages
+                 '((emacs-lisp . t)
+                   (clojure . t)
+                   (shell . t)
+                   (python . t)))
+
   (defun skuro/org-ispell ()
     "Configure `ispell-skip-region-alist' for `org-mode'."
     (make-local-variable 'ispell-skip-region-alist)
@@ -48,7 +55,9 @@
 
   (unbind-key "C-'" org-mode-map)       ; Free C-' (see: 00-editing.el)
   (unbind-key "S-<return>" org-mode-map) ; Free S-RET (see: 00-editing.el)
-  )
+
+  ;; load org-babel backends
+  (require 'ob-python))
 
 (use-package org-agenda                 ; Dynamic task and appointment lists
   :after org
