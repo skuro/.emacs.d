@@ -81,10 +81,10 @@
 (eval-when-compile (require 'use-package))
 
 (use-package diminish                   ; Hide modes in the mode-line
-             :ensure t)
+  :ensure t)
 
 (use-package dash                       ; A modern list library
-             :ensure t)
+  :ensure t)
 
 (require 'subr-x)
 (require 'time-date)
@@ -97,52 +97,53 @@
 
 ;;; Validation
 (use-package validate                   ; Validate options
-             :ensure t)
+  :ensure t)
 
 (use-package exec-path-from-shell       ; Set up environment variables
-             :ensure t
-             :if (display-graphic-p)
-             :config
-             (validate-setq exec-path-from-shell-variables
-                            '("PATH"               ; Full path
-                              "JAVA_OPTS"          ; Options for Java processes
-                              ))
-             (exec-path-from-shell-initialize))
+  :ensure t
+  :if (display-graphic-p)
+  :config
+  (validate-setq exec-path-from-shell-variables
+                 '("PATH"               ; Full path
+                   "JAVA_OPTS"          ; Options for Java processes
+                   ))
+  :init
+  (exec-path-from-shell-initialize))
 
 ;; Set separate custom file for the customize interface
 (defconst skuro/custom-file (locate-user-emacs-file "custom.el")
   "File used to store settings from Customization UI.")
 
 (use-package cus-edit                   ; Set up custom.el
-             :defer t
-             :config
-             (validate-setq
-              custom-file skuro/custom-file
-              custom-buffer-done-kill nil          ; Kill when existing
-              custom-buffer-verbose-help nil       ; Remove redundant help text
-              custom-unlispify-tag-names nil       ; Show me the real variable name
-              custom-unlispify-menu-entries nil)
-             :init (load skuro/custom-file 'no-error 'no-message))
+  :defer t
+  :config
+  (validate-setq
+   custom-file skuro/custom-file
+   custom-buffer-done-kill nil          ; Kill when existing
+   custom-buffer-verbose-help nil       ; Remove redundant help text
+   custom-unlispify-tag-names nil       ; Show me the real variable name
+   custom-unlispify-menu-entries nil)
+  :init (load skuro/custom-file 'no-error 'no-message))
 
 (use-package no-littering               ; Keep .emacs.d clean
-             :ensure t
-             :config
-             (require 'recentf)
-             (add-to-list 'recentf-exclude no-littering-var-directory)
-             (add-to-list 'recentf-exclude no-littering-etc-directory)
+  :ensure t
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
 
-             (validate-setq
-              create-lockfiles nil
-              delete-old-versions t
-              kept-new-versions 6
-              kept-old-versions 2
-              version-control t)
+  (validate-setq
+   create-lockfiles nil
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)
 
-             (validate-setq
-              backup-directory-alist
-              `((".*" . ,(no-littering-expand-var-file-name "backup/")))
-              auto-save-file-name-transforms
-              `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+  (validate-setq
+   backup-directory-alist
+   `((".*" . ,(no-littering-expand-var-file-name "backup/")))
+   auto-save-file-name-transforms
+   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;; Confirm before quitting Emacs
 (validate-setq confirm-kill-emacs #'y-or-n-p)
@@ -171,7 +172,7 @@
 ;; Reset default values
 (add-hook 'emacs-startup-hook #'skuro/set-gc-threshold)
 
- ;; Local Variables:
+;; Local Variables:
 ;; coding: utf-8
 ;; indent-tabs-mode: nil
 ;; End:
