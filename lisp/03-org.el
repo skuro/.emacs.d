@@ -13,7 +13,8 @@
 
 (use-package org                        ; The almighty Org
   :ensure t
-  :bind (("C-c o l" . org-store-link))
+  :bind (("C-c o l" . org-store-link)
+         ("C-c w" . org-refile))
   :config
   (validate-setq
    org-src-fontify-natively t
