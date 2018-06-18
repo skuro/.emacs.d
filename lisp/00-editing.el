@@ -13,6 +13,8 @@
 
 (prefer-coding-system 'utf-8)
 
+(bind-key "C-1" 'recenter)
+
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))
 
@@ -577,6 +579,9 @@ Add this to `kill-buffer-query-functions'."
 
 ;; Don't kill important buffers
 (add-hook 'kill-buffer-query-functions #'skuro/do-not-kill-important-buffers)
+
+;; Trim whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (bind-key "C-x C-k" #'kill-this-buffer)  ; Kill only the current buffer
 
