@@ -94,6 +94,10 @@
   :ensure t
   :defer t)
 
+(use-package git-link
+  :ensure t
+  :bind ("C-c v k" . git-link))
+
 (provide '05-magit)
 
 ;; Local Variables:
