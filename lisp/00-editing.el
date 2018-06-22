@@ -14,6 +14,7 @@
 (prefer-coding-system 'utf-8)
 
 (bind-key "C-1" 'recenter)
+(bind-key "C-<tab>" 'hs-toggle-hiding)
 
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))

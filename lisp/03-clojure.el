@@ -50,7 +50,8 @@
          ("\\.edn$"  . clojure-mode))
   :hook ((clojure-mode . cider-mode)
          (clojure-mode . subword-mode)
-         (clojure-mode . paredit-mode))
+         (clojure-mode . paredit-mode)
+         (clojure-mode . hs-minor-mode))
   :config
   ;; Fix indentation of some common macros
   (define-clojure-indent
