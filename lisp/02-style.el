@@ -64,7 +64,7 @@
 (setq-default line-spacing 0.2)         ; Increase line-spacing (default 0)
 
 ;; Configure a reasonable fill column and enable automatic filling
-(setq-default fill-column 80)
+(setq-default fill-column 200)
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (diminish 'auto-fill-function)
 
