@@ -13,8 +13,17 @@
 
 (prefer-coding-system 'utf-8)
 
+(defun skuro/to-beginning-or-indentation ()
+  "Jumps back to either beginning of the line or indentation."
+  (interactive)
+  (if (bolp)
+      (back-to-indentation)
+    (beginning-of-line)))
+
 (bind-key "C-1" 'recenter)
 (bind-key "C-<tab>" 'hs-toggle-hiding)
+(bind-key "s-<left>" 'skuro/to-beginning-or-indentation)
+(bind-key "s-<right>" 'end-of-line)
 
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))
