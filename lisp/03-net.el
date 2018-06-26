@@ -45,11 +45,15 @@
   (remove-hook 'paradox-after-execute-functions
                #'paradox--report-buffer-display-if-noquery))
 
+(defun skuro/open-with-chrome
+    (url &optional _new-window)
+  "Opens URL with Google Chrome."
+  (shell-command (concat "open -a \"Google Chrome\" " url)))
+
 (use-package browse-url                 ; Browse URLs
   :config
   (validate-setq
-   browse-url-browser-function 'browse-url-generic
-   browse-url-generic-program "opera"))
+   browse-url-browser-function 'skuro/open-with-chrome))
 
 (use-package goto-addr                  ; Make links clickable
   :defer t
