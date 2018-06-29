@@ -35,7 +35,7 @@
 ;;; Package setup
 (require 'package)
 
-(setq debug-on-error t)
+(setq debug-on-error t)                ; Always provide full error details
 
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
@@ -50,14 +50,19 @@
         ("gnu"            . 10)
         ("melpa-unstable" . 0)))
 
+;; Reconsider when this issue is solved and a new release is out:
+;; https://github.com/jwiegley/use-package/issues/602
 (add-to-list 'package-pinned-packages
              '(use-package . "melpa-unstable") t)
 
 (package-initialize)
 
+;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(eval-when-compile (require 'use-package))
 
 (setq load-prefer-newer t)              ; Always load newer compiled files
 (setq ad-redefinition-action 'accept)   ; Silence advice redefinition warnings
@@ -72,13 +77,6 @@
   "Reset `gc-cons-threshold' and `gc-cons-percentage' to their default values."
   (setq gc-cons-threshold 16777216
         gc-cons-percentage 0.1))
-
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile (require 'use-package))
 
 (use-package diminish                   ; Hide modes in the mode-line
   :ensure t)
@@ -150,11 +148,14 @@
 
 (defconst skuro/personal-packages-folder (expand-file-name "lisp" user-emacs-directory))
 
-;;; Require files under ~/.emacs.d/lisp
+;;;
+;;; Split elisp configuration in files under ~/.emacs.d/lisp and automatically
+;;; load all of them in lexicographical order
+;;;
 (add-to-list 'load-path skuro/personal-packages-folder)
 
 (defun skuro/personal-packages ()
-  "List all `cs-*' packages declared in the personal `lisp' folder."
+  "List all packages declared in the personal `lisp' folder."
   (mapcar 'file-name-sans-extension
           (directory-files skuro/personal-packages-folder nil ".*\.el")))
 
