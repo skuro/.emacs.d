@@ -75,27 +75,27 @@
              :demand t)
 
 (use-package page-break-lines           ; Better looking break lines
-             :ensure t
-             :defer t
-             :init (global-page-break-lines-mode))
+  :ensure t
+  :defer t
+  :init (global-page-break-lines-mode))
 
 (use-package prog-mode
-             ;; Prettify symbols
-             :config
-             (global-prettify-symbols-mode 1)
+  ;; Prettify symbols
+  :config
+  (global-prettify-symbols-mode 1)
 
-             ;; Unprettify symbols with point on them and next to them
-             (validate-setq prettify-symbols-unprettify-at-point 'right-edge))
+  ;; Unprettify symbols with point on them and next to them
+  (validate-setq prettify-symbols-unprettify-at-point 'right-edge))
 
 (use-package ansi-color                 ; Colorize ANSI escape sequences
-             :defer t
-             :config
-             (defun skuro/colorize-compilation ()
-               "Colourize from `compilation-filter-start' to `point-max'."
-               (let ((inhibit-read-only t))
-                 (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  :defer t
+  :config
+  (defun skuro/colorize-compilation ()
+    "Colourize from `compilation-filter-start' to `point-max'."
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
 
-             (add-hook 'compilation-filter-hook #'skuro/colorize-compilation))
+  (add-hook 'compilation-filter-hook #'skuro/colorize-compilation))
 
 ;; Underline below the font bottomline instead of the baseline
 (validate-setq x-underline-at-descent-line t)
@@ -187,6 +187,9 @@
 (use-package fontify-face               ; Fontify symbols with that their face
   :ensure t
   :commands fontify-face-mode)
+
+;; Use a powerline-enabled font
+(set-frame-font "Meslo LG M DZ for Powerline")
 
 (provide '02-style)
 
