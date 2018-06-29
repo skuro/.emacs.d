@@ -24,6 +24,8 @@
 (bind-key "C-<tab>" 'hs-toggle-hiding)
 (bind-key "s-<left>" 'skuro/to-beginning-or-indentation)
 (bind-key "s-<right>" 'end-of-line)
+(bind-key "s-<home>" 'previous-buffer)
+(bind-key "s-<end>" 'next-buffer)
 
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))
