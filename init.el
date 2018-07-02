@@ -97,9 +97,13 @@
 (use-package validate                   ; Validate options
   :ensure t)
 
+(defun skuro/batch-mode-p ()
+  "Return non-nil if Emacs is start in batch mode."
+  noninteractive)
+
 (use-package exec-path-from-shell       ; Set up environment variables
   :ensure t
-  :if (display-graphic-p)
+  :if (not (skuro/batch-mode-p))
   :config
   (validate-setq exec-path-from-shell-variables
                  '("PATH"               ; Full path
