@@ -82,7 +82,8 @@
               ("C-c t p" . cider-toggle-pretty-printing))
   :hook ((cider-repl-mode . company-mode)
          (cider-repl-mode . eldoc-mode)
-         (cider-repl-mode . subword-mode))
+         (cider-repl-mode . subword-mode)
+         (cider-repl-mode . paredit-mode))
   :config
   (validate-setq
    cider-repl-wrap-history t
