@@ -205,7 +205,7 @@ Otherwise copy the non-directory part only."
   :config
   (validate-setq
    dired-auto-revert-buffer t           ; Revert buffers on revisiting
-   dired-listing-switches "-lFaGh1v --group-directories-first"
+   dired-listing-switches "-lFaGh1v"
    dired-dwim-target t                  ; Use other pane as target
    dired-recursive-copies 'always       ; Copy dirs recursively
    dired-recursive-deletes ' always     ; Delete dirs recursively

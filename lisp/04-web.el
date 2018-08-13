@@ -40,6 +40,7 @@
   (validate-setq js2-highlight-level 3))
 
 (use-package json-mode
+  :ensure t
   :mode (("\\.json\\'" . json-mode)
          ("\\.json.template\\'" . json-mode))
   :hook (json-mode . enable-paredit-mode)
