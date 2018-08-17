@@ -347,8 +347,8 @@ Otherwise copy the non-directory part only."
    projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
   (projectile-register-project-type 'lein-clj '("project.clj")
-                                    "lein uberjar" ; compile command
-                                    "lein test"))  ; test command
+                                    :compile "lein uberjar"
+                                    :test    "lein test"))
 
 (use-package counsel-projectile         ; Ivy integration for Projectile
   :ensure t
