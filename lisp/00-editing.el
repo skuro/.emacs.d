@@ -712,6 +712,9 @@ Add this to `kill-buffer-query-functions'."
   :after flycheck
   :config (flycheck-package-setup))
 
+(use-package plantuml-mode             ; UML graphs
+  :ensure t)
+
 (provide '00-editing)
 
 ;; Local Variables:
