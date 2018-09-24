@@ -22,7 +22,8 @@
    org-hide-emphasis-markers t
    org-return-follows-link t
    org-directory "/Users/skuro/Dropbox/org"
-   org-default-notes-file (expand-file-name "notes.org" org-directory))
+   org-default-notes-file (expand-file-name "notes.org" org-directory)
+   org-startup-with-inline-images t)
 
   ;; Use Org structures and tables in message mode
   (add-hook 'message-mode-hook #'turn-on-orgtbl)
