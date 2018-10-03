@@ -26,6 +26,7 @@
 (bind-key "s-<right>" 'end-of-line)
 (bind-key "s-<home>" 'previous-buffer)
 (bind-key "s-<end>" 'next-buffer)
+(bind-key "C-M-<backspace>" 'window-toggle-side-windows)
 
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))
