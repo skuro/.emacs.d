@@ -716,6 +716,9 @@ Add this to `kill-buffer-query-functions'."
 (use-package plantuml-mode             ; UML graphs
   :ensure t)
 
+(use-package jinja2-mode               ; python / GCP templates
+  :ensure t)
+
 (provide '00-editing)
 
 ;; Local Variables:
