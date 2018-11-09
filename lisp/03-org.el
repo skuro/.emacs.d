@@ -22,6 +22,7 @@
    org-hide-emphasis-markers t
    org-return-follows-link t
    org-directory "/Users/skuro/Dropbox/org"
+   org-duration-format ((special . h:mm))
    org-default-notes-file (expand-file-name "notes.org" org-directory)
    org-startup-with-inline-images t)
 
