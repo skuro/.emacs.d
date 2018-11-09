@@ -34,7 +34,8 @@
   (validate-setq
    ;; Disable parser errors and strict warnings
    js2-mode-show-parse-errors nil
-   js2-mode-show-strict-warnings nil)
+   js2-mode-show-strict-warnings nil
+   js-indent-level 2)
 
   ;; Try to highlight most ECMA built-ins
   (validate-setq js2-highlight-level 3))
