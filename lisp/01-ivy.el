@@ -12,6 +12,7 @@
 ;;; Code:
 
 (use-package ivy                        ; Incremental Vertical completYon
+  :pin "melpa-unstable"
   :ensure t
   :bind (("C-c r"   . ivy-resume)
          ("C-x C-r" . ivy-switch-buffer)

@@ -27,8 +27,6 @@
 
 (use-package paradox                    ; Better package manager interface
   :ensure t
-  :bind (("C-c p p" . paradox-list-packages)
-         ("C-c p P" . paradox-upgrade-packages))
   :config
 
   (validate-setq

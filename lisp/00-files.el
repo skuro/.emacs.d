@@ -337,6 +337,7 @@ Otherwise copy the non-directory part only."
 (use-package projectile                 ; Project management
   :ensure t
   :init (projectile-mode)
+  :bind-keymap  ("C-c p" . projectile-command-map)
   :config
   ;; Remove dead projects when Emacs is idle
   (run-with-idle-timer 10 nil #'projectile-cleanup-known-projects)
@@ -355,6 +356,7 @@ Otherwise copy the non-directory part only."
   :bind (:map projectile-command-map
               ("p" . counsel-projectile-switch-project)
               ("r" . counsel-projectile-rg))
+  :pin "melpa-unstable"                 ; see https://github.com/ericdanan/counsel-projectile/issues/119
   :init (counsel-projectile-mode))
 
 (provide '00-files)
