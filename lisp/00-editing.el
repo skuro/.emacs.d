@@ -277,7 +277,26 @@
       (open-line 1)
       (insert line-text))))
 
+;;;###autoload
+(defun skuro/move-line-up ()
+  "Move up the current line, courtesy of mr Batsov."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+;;;###autoload
+(defun skuro/move-line-down ()
+  "Move down the current line, courtesy of mr Batsov."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
 (bind-key "C-c x d" 'skuro/duplicate-line)    ; Duplicate line at point
+(bind-key "C-s-<up>" 'skuro/move-line-up)     ; Move current line up
+(bind-key "C-s-<down>" 'skuro/move-line-down) ; Move current line down
 
 ;; Join line with the next one
 (bind-key "C-j" (lambda ()
