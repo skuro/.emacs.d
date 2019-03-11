@@ -738,6 +738,9 @@ Add this to `kill-buffer-query-functions'."
 (use-package jinja2-mode               ; python / GCP templates
   :ensure t)
 
+(use-package rust-mode                 ; rust
+  :ensure t)
+
 (provide '00-editing)
 
 ;; Local Variables:
