@@ -182,7 +182,15 @@
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package hi-lock                    ; Custom regexp highlights
-  :init (global-hi-lock-mode))
+  :init (global-hi-lock-mode)
+  :bind (("s-." . #'skuro/highlight-word-at-point))
+  :config
+  (defun skuro/highlight-word-at-point ()
+    "Highlight all occurrences of the word at point in the current buffer."
+    (interactive)
+    (if hi-lock-interactive-patterns
+        (unhighlight-regexp (car (car hi-lock-interactive-patterns)))
+      (highlight-symbol-at-point))))
 
 (use-package fontify-face               ; Fontify symbols with that their face
   :ensure t
