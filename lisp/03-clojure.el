@@ -115,6 +115,7 @@
    cljr-favor-prefix-notation nil
    cljr-favor-private-functions nil
    cljr-warn-on-eval nil
+   cljr-hotload-dependencies t
    cljr-inject-dependencies-at-jack-in nil)
 
   (validate-setq

@@ -1,4 +1,4 @@
-;;; cs-style.el --- Part of my Emacs setup -*- lexical-binding: t; -*-
+;;; 02-style.el --- Part of my Emacs setup -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018-2019 Carlo Sciolla
 
@@ -206,4 +206,4 @@
 ;; indent-tabs-mode: nil
 ;; End:
 
-;;; cs-style.el ends here
+;;; 02-style.el ends here

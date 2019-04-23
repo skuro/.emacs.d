@@ -733,7 +733,27 @@ Add this to `kill-buffer-query-functions'."
   :config (flycheck-package-setup))
 
 (use-package plantuml-mode             ; UML graphs
-  :ensure t)
+  :ensure t
+  :mode (("\\.puml" . plantuml-mode)
+         ("\\.plantuml" . plantuml-mode)
+         ("\\.iuml" . plantuml-mode))
+  :config (validate-setq plantuml-output-type "png"))
+
+(use-package image+ :ensure t :after 'image-mode
+  :init
+  (add-hook 'image-mode-hook
+            '(lambda ()
+               (require 'image+)
+               (imagex-sticky-mode)))
+  :bind (:map image-mode-map
+              ("=" . imagex-sticky-zoom-in)
+              ("-" . imagex-sticky-zoom-out)
+              ("m" . imagex-sticky-maximize)
+              ("0" . imagex-sticky-restore-original)
+              ("S" . imagex-sticky-save-image)
+              ("r" . imagex-sticky-rotate-right)
+              ("l" . imagex-sticky-rotate-left)
+              ("/" . imagex-sticky-binding/body)))
 
 (use-package jinja2-mode               ; python / GCP templates
   :ensure t)
