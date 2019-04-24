@@ -60,10 +60,10 @@
   :bind (("C-c <backspace>" . hungry-delete-backward)
          ("C-c <deletechar>" . hungry-delete-forward)))
 
-(use-package undo-tree                  ; Show buffer changes as a tree
-  :ensure t
-  :init (global-undo-tree-mode)
-  :config (validate-setq undo-tree-visualizer-timestamps t))
+;;(use-package undo-tree                  ; Show buffer changes as a tree
+;;  :ensure t
+;;  :init (global-undo-tree-mode)
+;;  :config (validate-setq undo-tree-visualizer-timestamps t))
 
 (use-package delsel                     ; Delete the selection instead of insert
   :defer t
@@ -442,6 +442,7 @@ With arg N, insert N newlines."
    which-key-sort-order 'which-key-prefix-then-key-order))
 
 (use-package hydra                      ; Make bindings that stick
+  :pin    melpa-unstable ;; https://github.com/abo-abo/hydra/issues/323
   :ensure t)
 
 (defhydra hydra-zoom ()
