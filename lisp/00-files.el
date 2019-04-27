@@ -345,7 +345,7 @@ Otherwise copy the non-directory part only."
   (validate-setq
    projectile-completion-system 'ivy
    projectile-find-dir-includes-top-level t
-   projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+   projectile-mode-line-function '(lambda () (format " Proj[%s]" (projectile-project-name))))
 
   (projectile-register-project-type 'lein-clj '("project.clj")
                                     :compile "lein uberjar"
