@@ -34,8 +34,8 @@
    org-todo-keywords '("TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))
 
   ;; Define Agenda files for GTD
-  (validate-setq org-agenda-files '("/Users/skuro/Dropbox/org"
-                                    "/Users/skuro/Dropbox/org/synple"))
+  (validate-setq org-agenda-files (list (expand-file-name "~/Dropbox/org")
+                                        (expand-file-name "~/Dropbox/org/synple")))
 
   ;; Evaluate code blocks
   (validate-setq org-babel-load-languages
@@ -75,9 +75,9 @@
   :bind ("C-c c" . org-capture)
   :config
   (setq
-   org-capture-templates '(("i" "GTD inbox" entry (file+headline "/Users/skuro/Dropbox/org/notes.org" "Inbox")
+   org-capture-templates `(("i" "GTD inbox" entry (file+headline ,(expand-file-name "~/Dropbox/org/notes.org") "Inbox")
                             "* TODO %^{Headline} %^g\n  Added: %U\n %i %?")
-                           ("n" "GTD next action" entry (file+headline "/Users/skuro/Dropbox/org/notes.org" "Next")
+                           ("n" "GTD next action" entry (file+headline ,(expand-file-name "~/Dropbox/org/notes.org") "Next")
                             "* TODO %^{Headline} %^g\n  Added: %U\n %i %?")))
   (setq org-agenda-custom-commands
         '(
