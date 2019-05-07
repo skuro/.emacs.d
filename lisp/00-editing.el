@@ -762,6 +762,22 @@ Add this to `kill-buffer-query-functions'."
 (use-package rust-mode                 ; rust
   :ensure t)
 
+;;;###autoload
+(defun skuro/open-buffer-file-with-app ()
+  "Open the file associated with the current buffer using an external application."
+  (interactive)
+  (let ((file (buffer-file-name))
+        (process-connection-type nil)
+        (open-cmd (cond
+                   ((string-equal system-type "windows-nt")
+                    (message "Microsoft Windows not supported"))
+                   ((string-equal system-type "darwin")
+                    "/usr/bin/open")
+                   ((string-equal system-type "gnu/linux")
+                    "/usr/bin/xdg-open"))))
+    (when open-cmd
+      (start-process "" nil open-cmd file))))
+
 (provide '00-editing)
 
 ;; Local Variables:
