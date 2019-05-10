@@ -738,7 +738,8 @@ Add this to `kill-buffer-query-functions'."
   :mode (("\\.puml" . plantuml-mode)
          ("\\.plantuml" . plantuml-mode)
          ("\\.iuml" . plantuml-mode))
-  :config (validate-setq plantuml-output-type "png"))
+  :config (validate-setq plantuml-output-type "png"
+                         plantuml-jar-path    (expand-file-name "~/.plantuml/plantuml.jar")))
 
 (use-package image+ :ensure t :after 'image-mode
   :init
