@@ -762,6 +762,10 @@ Add this to `kill-buffer-query-functions'."
 (use-package rust-mode                 ; rust
   :ensure t)
 
+(use-package restclient
+  :ensure t
+  :mode (("\\.html" . restclient-mode)))
+
 ;;;###autoload
 (defun skuro/open-buffer-file-with-app ()
   "Open the file associated with the current buffer using an external application."
