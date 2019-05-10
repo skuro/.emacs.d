@@ -42,6 +42,9 @@
   (validate-setq
    cider-mode-line '(:eval (format " CIDER[%s]" (skuro/cider-mode-line-info)))))
 
+(use-package flycheck-clj-kondo         ; Requires `clj-kondo' to be installed and available on `exec-path'
+  :ensure t)
+
 (use-package clojure-mode               ; Major mode for Clojure files
   :ensure t
   :mode (("\\.boot$" . clojure-mode)
@@ -64,7 +67,10 @@
     (HEAD 2)
     (ANY 2)
     (context 2)
-    (reporting 1)))
+    (reporting 1))
+
+  ;; Add linting
+  (require 'flycheck-clj-kondo))
 
 (use-package clojure-mode-extra-font-locking ; Extra font-locking for Clojure
   :ensure t)
