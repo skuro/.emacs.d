@@ -56,6 +56,7 @@
 
 (use-package tide
   :ensure t
+  :bind (("C-c C-d C-d" . tide-documentation-at-point))
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
