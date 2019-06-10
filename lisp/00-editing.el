@@ -767,6 +767,11 @@ Add this to `kill-buffer-query-functions'."
   :ensure t
   :mode (("\\.html" . restclient-mode)))
 
+(use-package adoc-mode
+  :ensure t
+  :mode (("\\.adoc" . adoc-mode)
+         ("\\.asciidoc" . adoc-mode)))
+
 ;;;###autoload
 (defun skuro/open-buffer-file-with-app ()
   "Open the file associated with the current buffer using an external application."
