@@ -772,6 +772,9 @@ Add this to `kill-buffer-query-functions'."
   :mode (("\\.adoc" . adoc-mode)
          ("\\.asciidoc" . adoc-mode)))
 
+(use-package terraform-mode
+  :ensure t)
+
 ;;;###autoload
 (defun skuro/open-buffer-file-with-app ()
   "Open the file associated with the current buffer using an external application."
