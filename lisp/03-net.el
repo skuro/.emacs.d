@@ -46,7 +46,13 @@
 (defun skuro/open-with-chrome
     (url &optional _new-window)
   "Opens URL with Google Chrome."
-  (shell-command (concat "open -a \"Google Chrome\" " url)))
+  (cond
+   ((string-equal system-type "windows-nt") ; Microsoft Windows
+    (message "Open URL not currently supported on Windows, see skuro/open-with-chrome"))
+   ((string-equal system-type "darwin") ; Mac OS X
+    (shell-command (concat "open -a \"Google Chrome\" " url)))
+   ((string-equal system-type "gnu/linux") ; linux
+    (shell-command (concat "google-chrome " url)))))
 
 (use-package browse-url                 ; Browse URLs
   :config
