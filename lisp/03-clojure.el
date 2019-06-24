@@ -70,7 +70,11 @@
     (reporting 1))
 
   ;; Add linting
-  (require 'flycheck-clj-kondo))
+  (require 'flycheck-clj-kondo)
+
+  :custom
+  ;; Avoid https://github.com/clojure-emacs/clojure-mode/issues/525
+  (clojure-align-separator 'group "[skuro] Support binding forms with arbitrary newline breaks"))
 
 (use-package clojure-mode-extra-font-locking ; Extra font-locking for Clojure
   :ensure t)
