@@ -37,6 +37,9 @@
   (validate-setq org-agenda-files (list (expand-file-name "~/Dropbox/org")
                                         (expand-file-name "~/Dropbox/org/synple")))
 
+  ;; Archive in same file
+  (validate-setq org-archive-location "::* Archive")
+
   ;; Evaluate code blocks
   (validate-setq org-babel-load-languages
                  '((emacs-lisp . t)
