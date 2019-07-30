@@ -14,6 +14,8 @@
 (use-package pyvenv
   :ensure t)
 
+(setq-default python-shell-interpreter "python3")
+
 (provide '03-python)
 
 ;; Local Variables:
