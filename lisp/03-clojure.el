@@ -1,4 +1,4 @@
-;;; cs-clojure.el --- Part of my Emacs setup -*- lexical-binding: t; -*-
+;;; 03-clojure.el --- Part of my Emacs setup -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018-2019 Carlo Sciolla
 
@@ -145,4 +145,4 @@
 ;; indent-tabs-mode: nil
 ;; End:
 
-;;; cs-clojure.el ends here
+;;; 03-clojure.el ends here
