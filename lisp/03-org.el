@@ -34,8 +34,7 @@
    org-todo-keywords '("TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))
 
   ;; Define Agenda files for GTD
-  (validate-setq org-agenda-files (list (expand-file-name "~/Dropbox/org")
-                                        (expand-file-name "~/Dropbox/org/synple")))
+  (validate-setq org-agenda-files (list (expand-file-name "~/Dropbox/org")))
 
   ;; Archive in same file
   (validate-setq org-archive-location "::* Archive")
@@ -58,7 +57,7 @@
 
   (add-hook 'org-mode-hook #'skuro/org-ispell)
 
-  (unbind-key "C-'" org-mode-map)       ; Free C-' (see: 00-editing.el)
+  (unbind-key "C-'" org-mode-map)        ; Free C-' (see: 00-editing.el)
   (unbind-key "S-<return>" org-mode-map) ; Free S-RET (see: 00-editing.el)
 
   ;; load org-babel backends
