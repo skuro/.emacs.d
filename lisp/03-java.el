@@ -22,12 +22,11 @@
 (use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
   :ensure t)
 
-;; broken, see https://github.com/emacs-lsp/lsp-java/issues/152
-;; (use-package lsp-java                   ; LSP for Java
-;;   :ensure t
-;;   :after  lsp
-;;   :config
-;;   (add-hook 'java-mode-hook 'lsp))
+(use-package lsp-java                   ; LSP for Java
+  :ensure t
+  :after  lsp
+  :config
+  (add-hook 'java-mode-hook 'lsp))
 
 (use-package dap-mode
   :ensure t
