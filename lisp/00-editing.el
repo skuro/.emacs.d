@@ -765,7 +765,7 @@ Add this to `kill-buffer-query-functions'."
 
 (use-package restclient
   :ensure t
-  :mode (("\\.html" . restclient-mode)))
+  :mode (("\\.http" . restclient-mode)))
 
 (use-package adoc-mode
   :ensure t
