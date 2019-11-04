@@ -778,6 +778,9 @@ Add this to `kill-buffer-query-functions'."
 (use-package ini-mode
   :ensure t)
 
+(use-package yaml-mode
+  :ensure t)
+
 ;;;###autoload
 (defun skuro/open-buffer-file-with-app ()
   "Open the file associated with the current buffer using an external application."
