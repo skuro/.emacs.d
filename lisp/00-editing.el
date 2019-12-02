@@ -798,6 +798,26 @@ Add this to `kill-buffer-query-functions'."
       (start-process "" nil open-cmd file))))
 
 ;;;###autoload
+(defun skuro/toggle-selective-display (column)
+  "Switch on `selective-display' based on indentation to the column COLUMN."
+  (interactive "P")
+  (set-selective-display
+   (or column
+       (unless selective-display
+         (1+ (current-column))))))
+
+;;;###autoload
+(defun skuro/toggle-hiding (column)
+  "Hide and show blocks based on indentation to the column COLUMN."
+  (interactive "P")
+  (if hs-minor-mode
+      (if (condition-case nil
+              (hs-toggle-hiding)
+            (error t))
+          (hs-show-all))
+    (skuro/toggle-selective-display column)))
+
+;;;###autoload
 (defun skuro/kill-matching-lines (regexp &optional rstart rend interactive)
   "Kill lines containing matching REGEXP.
 
