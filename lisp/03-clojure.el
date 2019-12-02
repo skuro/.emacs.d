@@ -33,10 +33,8 @@
     "Simplify CIDER mode-line indicator."
     (if-let* ((current-connection (ignore-errors (cider-current-connection))))
         (with-current-buffer current-connection
-          (concat
-           cider-repl-type
-           (format
-            ":%s" (or (cider--project-name nrepl-project-dir) "<no project>"))))
+          (format
+           "%s:%s" cider-repl-type (or (cider--project-name nrepl-project-dir) "<no project>")))
       "-"))
 
   (validate-setq
