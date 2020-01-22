@@ -98,6 +98,15 @@
   :ensure t
   :bind ("C-c v k" . git-link))
 
+;; waiting a release of closql that includes the following fix:
+;; https://github.com/emacscollective/closql/pull/1
+(use-package closql
+  :pin "melpa-unstable")
+
+(use-package forge
+  :ensure t
+  :after magit)
+
 (provide '05-magit)
 
 ;; Local Variables:
