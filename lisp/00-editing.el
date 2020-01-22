@@ -296,7 +296,9 @@
 
 (bind-key "C-c x d" 'skuro/duplicate-line)    ; Duplicate line at point
 (bind-key "S-s-<up>" 'skuro/move-line-up)     ; Move current line up
+(bind-key "C-s-<up>" 'skuro/move-line-up)     ; Move current line up (alternate keybinding)
 (bind-key "S-s-<down>" 'skuro/move-line-down) ; Move current line down
+(bind-key "C-s-<down>" 'skuro/move-line-down) ; Move current line down (alternate keybinding)
 
 ;; Join line with the next one
 (bind-key "C-j" (lambda ()
