@@ -72,6 +72,7 @@
 
 (use-package counsel                    ; Completion functions with Ivy
   :ensure t
+  :pin "melpa-unstable"
   :init (counsel-mode)
   :bind (("C-c b"   . counsel-ibuffer)
          ("C-c g"   . counsel-git-grep)
