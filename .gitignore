@@ -6,3 +6,4 @@ custom.el
 var/company
 var/projectile
 /cider-repl-history
+/.cask
