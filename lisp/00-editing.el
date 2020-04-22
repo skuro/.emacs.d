@@ -848,8 +848,6 @@ even beep.)"
     ;; Delete lines or make the "Buffer is read-only" error.
     (flush-lines regexp rstart rend interactive)))
 
-(bind-key "C-m" 'skuro/kill-matching-lines)
-
 (provide '00-editing)
 
 ;; Local Variables:
