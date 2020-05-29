@@ -85,7 +85,9 @@
   (global-prettify-symbols-mode 1)
 
   ;; Unprettify symbols with point on them and next to them
-  (validate-setq prettify-symbols-unprettify-at-point 'right-edge))
+  (validate-setq prettify-symbols-unprettify-at-point 'right-edge)
+
+  :hook (prod-mode . skuro/prod-mode-prettifies))
 
 (use-package ansi-color                 ; Colorize ANSI escape sequences
   :defer t
@@ -198,6 +200,19 @@
 
 ;; Use a powerline-enabled font
 (set-frame-font "Meslo LG M DZ for Powerline")
+
+;; Custom functions
+
+;; Some basic prettification
+(defun skuro/prog-mode-prettifies ()
+  (mapc (lambda (pair) (push pair prettify-symbols-alist))
+        '(("<=" . ?≤)
+          (">=" . ?≥)
+          ("=>" . ?⇒)
+          ("->" . ?→)
+          ("===" . ?≡)
+          ("!==" . ?≢)
+          ("!=" . ?≠))))
 
 (provide '02-style)
 

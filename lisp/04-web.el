@@ -29,7 +29,8 @@
   :ensure t
   :mode (("\\.js\\'" . rjsx-mode)
          ("\\.jsx\\'" . rjsx-mode))
-  :hook (rjxs-mode . js2-imenu-extras-mode)
+  :hook ((rjxs-mode . js2-imenu-extras-mode)
+         (rjxs-mode . skuro/prog-mode-prettifies))
   :config
   (validate-setq
    ;; Disable parser errors and strict warnings
@@ -52,6 +53,7 @@
 
 (use-package typescript-mode
   :ensure t
+  :hook (typescript-mode . skuro/prog-mode-prettifies)
   :mode (("\\.ts\\'" . typescript-mode)
          ("\\.tsx\\'" . typescript-mode)))
 

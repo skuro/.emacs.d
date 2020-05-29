@@ -52,7 +52,8 @@
   :hook ((clojure-mode . cider-mode)
          (clojure-mode . subword-mode)
          (clojure-mode . paredit-mode)
-         (clojure-mode . hs-minor-mode))
+         (clojure-mode . hs-minor-mode)
+         (clojure-mode . skuro/prog-mode-prettifies))
   :config
   ;; Fix indentation of some common macros
   (define-clojure-indent
