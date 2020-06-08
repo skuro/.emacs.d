@@ -87,7 +87,7 @@
   ;; Unprettify symbols with point on them and next to them
   (validate-setq prettify-symbols-unprettify-at-point 'right-edge)
 
-  :hook (prod-mode . skuro/prod-mode-prettifies))
+  :hook (prog-mode . skuro/prog-mode-prettifies))
 
 (use-package ansi-color                 ; Colorize ANSI escape sequences
   :defer t
@@ -206,13 +206,14 @@
 ;; Some basic prettification
 (defun skuro/prog-mode-prettifies ()
   (mapc (lambda (pair) (push pair prettify-symbols-alist))
-        '(("<=" . ?≤)
-          (">=" . ?≥)
-          ("=>" . ?⇒)
-          ("->" . ?→)
-          ("===" . ?≡)
-          ("!==" . ?≢)
-          ("!=" . ?≠))))
+        '(("<=" .  (?· (Br . Bl) ?≤))
+          (">=" . (?· (Br . Bl) ?≥))
+          ("=>" . (?· (Br . Bl) ?⇒))
+          ("->" . (?\s (Br . Bl) ?\s (Bc . Bc) ?→))
+          ("->>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Br) ?→ (Bc . Bl) ?→))
+          ("===" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Bc) ?≡))
+          ("!==" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Bc) ?≢))
+          ("!=" . (?· (Br . Bl) ?≠)))))
 
 (provide '02-style)
 
