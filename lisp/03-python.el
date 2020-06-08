@@ -16,6 +16,13 @@
 
 (setq-default python-shell-interpreter "python3")
 
+(use-package lsp-python-ms
+  :ensure t
+  :init (setq lsp-python-ms-auto-install-server t)
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-python-ms)
+                         (lsp))))  ; or lsp-deferred
+
 (provide '03-python)
 
 ;; Local Variables:
