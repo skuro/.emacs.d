@@ -294,11 +294,24 @@
   (forward-line -1)
   (indent-according-to-mode))
 
+;;;###autoload
+(defun skuro/font-+ ()
+  (interactive)
+  (set-face-attribute 'default nil :height
+                      (+ (face-attribute 'default :height) 10)))
+;;;===autoload
+(defun skuro/font-- ()
+  (interactive)
+  (set-face-attribute 'default nil :height
+                      (- (face-attribute 'default :height) 10)))
+
 (bind-key "C-c x d" 'skuro/duplicate-line)    ; Duplicate line at point
 (bind-key "S-s-<up>" 'skuro/move-line-up)     ; Move current line up
 (bind-key "C-s-<up>" 'skuro/move-line-up)     ; Move current line up (alternate keybinding)
 (bind-key "S-s-<down>" 'skuro/move-line-down) ; Move current line down
 (bind-key "C-s-<down>" 'skuro/move-line-down) ; Move current line down (alternate keybinding)
+(global-set-key (kbd "C-<mouse-5>") 'skuro/font-+) ; Enlarge fonts with your mouse
+(global-set-key (kbd "C-<mouse-4>") 'skuro/font--) ; Shrink fonts with your mouse
 
 ;; Join line with the next one
 (bind-key "C-j" (lambda ()
@@ -726,6 +739,7 @@ Add this to `kill-buffer-query-functions'."
 (use-package flycheck                   ; On-the-fly syntax checker
   :ensure t
   :bind ("C-c t e" . flycheck-mode)
+  :pin melpa-unstable                  ; https://github.com/flycheck/flycheck/issues/1754
   :init
   (global-flycheck-mode))
 
