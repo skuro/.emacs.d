@@ -55,7 +55,9 @@
 (add-to-list 'package-pinned-packages
              '(use-package . "melpa-unstable") t)
 
-(package-initialize)
+;; Prepare for Emacs 27 when package initialization happens before init
+(when (< emacs-major-version 27)
+  (package-initialize))
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
