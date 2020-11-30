@@ -68,9 +68,6 @@
     (context 2)
     (reporting 1))
 
-  ;; Remove as soon as 5.12 lands on MELPA stable
-  (setq clojure-namespace-regexp clojure-namespace-name-regex)
-
   ;; Add linting
   (require 'flycheck-clj-kondo)
 
