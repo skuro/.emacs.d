@@ -38,7 +38,9 @@
       "-"))
 
   (validate-setq
-   cider-mode-line '(:eval (format " CIDER[%s]" (skuro/cider-mode-line-info)))))
+   cider-mode-line '(:eval (format " CIDER[%s]" (skuro/cider-mode-line-info))))
+  (validate-setq
+   clojure-toplevel-inside-comment-form t))
 
 (use-package flycheck-clj-kondo         ; Requires `clj-kondo' to be installed and available on `exec-path'
   :ensure t)
@@ -94,6 +96,9 @@
          (cider-repl-mode . subword-mode)
          (cider-repl-mode . paredit-mode))
   :config
+  (defun skuro/cider-repl-prompt-function (ns)
+    )
+
   (validate-setq
    cider-repl-wrap-history t
    cider-repl-history-size 1000

@@ -13,14 +13,16 @@
 
 ;;; Env stuff
 
-(use-package lsp-mode                   ; Language Server Protocol
-  :ensure t)
+(use-package lsp-mode
+  :ensure t
+  :config)
 
 (use-package company-lsp                ; Completion for LSP
   :ensure t)
 
 (use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
-  :ensure t)
+  :ensure t
+  :commands lsp-ui-mode)
 
 (use-package lsp-java                   ; LSP for Java
   :ensure t
