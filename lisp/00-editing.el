@@ -800,6 +800,10 @@ Add this to `kill-buffer-query-functions'."
 (use-package go-mode
   :ensure t)
 
+(use-package mustache-mode
+  :ensure t
+  :mode ("\\.tpl\\'" . mustache-mode))
+
 ;;;###autoload
 (defun skuro/open-buffer-file-with-app ()
   "Open the file associated with the current buffer using an external application."
