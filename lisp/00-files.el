@@ -51,10 +51,6 @@
 
   (ignoramus-setup))
 
-(use-package hardhat                    ; Protect user-writable files
-  :ensure t
-  :init (global-hardhat-mode))
-
 (use-package sudo-edit                  ; Edit files as root, through Tramp
   :ensure t
   :bind ("C-c f s" . sudo-edit))
@@ -321,11 +317,6 @@ Otherwise copy the non-directory part only."
   :ensure t
   :config (diredfl-global-mode))
 
-(use-package dired-rsync                ; Allow rsync from dired buffers
-  :ensure t
-  :bind (:map dired-mode-map
-              ("C-c C-r" . dired-rsync)))
-
 (use-package dired-du
   :ensure t
   :defer t
@@ -356,7 +347,6 @@ Otherwise copy the non-directory part only."
   :bind (:map projectile-command-map
               ("p" . counsel-projectile-switch-project)
               ("r" . counsel-projectile-rg))
-  :pin "melpa-unstable"                 ; see https://github.com/ericdanan/counsel-projectile/issues/119
   :init (counsel-projectile-mode))
 
 (provide '00-files)

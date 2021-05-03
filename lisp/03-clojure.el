@@ -96,9 +96,6 @@
          (cider-repl-mode . subword-mode)
          (cider-repl-mode . paredit-mode))
   :config
-  (defun skuro/cider-repl-prompt-function (ns)
-    )
-
   (validate-setq
    cider-repl-wrap-history t
    cider-repl-history-size 1000
@@ -116,7 +113,6 @@
 
 (use-package clj-refactor               ; Refactoring utilities
   :ensure t
-  :pin "melpa-unstable"                 ; latest stable (v2.3.1) is incompatible with CIDER
   :hook (clojure-mode . (lambda ()
                           (clj-refactor-mode 1)
                           (yas-minor-mode 1)

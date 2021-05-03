@@ -11,14 +11,27 @@
 
 ;;; Code:
 
+;; Some basic prettification
+(defun skuro/prog-mode-prettifies ()
+  (mapc (lambda (pair) (push pair prettify-symbols-alist))
+        '(("<=" .  (?· (Br . Bl) ?≤))
+          (">=" . (?· (Br . Bl) ?≥))
+          ("=>" . (?· (Br . Bl) ?⇒))
+          ("->" . (?\s (Br . Bl) ?\s (Bc . Bc) ?→))
+          ("->>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Br) ?→ (Bc . Bl) ?→))
+          ("===" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Bc) ?≡))
+          ("!==" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Bc) ?≢))
+          ("!=" . (?· (Br . Bl) ?≠)))))
+
+
 ;;; Theme
 (validate-setq custom-safe-themes nil)    ; Treat themes as safe
 
 ;; I really love zenburn
 (use-package zenburn-theme
-             :ensure t
-             :config
-             (load-theme 'zenburn t))
+  :ensure t
+  :config
+  (load-theme 'zenburn t))
 
 ;;; Interface
 (use-package frame                      ; Frames
@@ -60,7 +73,7 @@
 ;; Disable startup echo area message
 (fset 'display-startup-echo-area-message #'ignore)
 
-(validate-setq history-length 1000)           ; Store more history
+(validate-setq history-length 1000)     ; Store more history
 (setq-default line-spacing 0.2)         ; Increase line-spacing (default 0)
 
 ;; Configure a reasonable fill column and enable automatic filling
@@ -200,20 +213,6 @@
 
 ;; Use a powerline-enabled font
 (set-frame-font "Meslo LG M DZ for Powerline")
-
-;; Custom functions
-
-;; Some basic prettification
-(defun skuro/prog-mode-prettifies ()
-  (mapc (lambda (pair) (push pair prettify-symbols-alist))
-        '(("<=" .  (?· (Br . Bl) ?≤))
-          (">=" . (?· (Br . Bl) ?≥))
-          ("=>" . (?· (Br . Bl) ?⇒))
-          ("->" . (?\s (Br . Bl) ?\s (Bc . Bc) ?→))
-          ("->>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Br) ?→ (Bc . Bl) ?→))
-          ("===" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Bc) ?≡))
-          ("!==" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Bc . Bc) ?≢))
-          ("!=" . (?· (Br . Bl) ?≠)))))
 
 (provide '02-style)
 

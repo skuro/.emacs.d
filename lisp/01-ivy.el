@@ -62,12 +62,7 @@
    ;; Jump to the beginning of match when leaving Swiper
    swiper-goto-start-of-match t))
 
-(use-package smex                       ; Better M-x interface
-  :ensure t)
-
 (use-package amx                        ; Better M-x interface
-  ;; TODO: waiting for https://github.com/abo-abo/swiper/pull/1585
-  :disabled t
   :ensure t)
 
 (use-package counsel                    ; Completion functions with Ivy

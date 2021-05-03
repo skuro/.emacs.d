@@ -17,9 +17,6 @@
   :ensure t
   :config)
 
-(use-package company-lsp                ; Completion for LSP
-  :ensure t)
-
 (use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
   :ensure t
   :commands lsp-ui-mode)

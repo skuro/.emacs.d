@@ -51,21 +51,7 @@
          (text-mode . whitespace-cleanup-mode)
          (conf-mode . whitespace-cleanup-mode)))
 
-(use-package shrink-whitespace          ; Better whitespace removal
-  :ensure t
-  :bind ("M-SPC" . shrink-whitespace))
-
-(use-package hungry-delete              ; Delete all whitespaces
-  :ensure t
-  :bind (("C-c <backspace>" . hungry-delete-backward)
-         ("C-c <deletechar>" . hungry-delete-forward)))
-
-;;(use-package undo-tree                  ; Show buffer changes as a tree
-;;  :ensure t
-;;  :init (global-undo-tree-mode)
-;;  :config (validate-setq undo-tree-visualizer-timestamps t))
-
-(use-package delsel                     ; Delete the selection instead of insert
+(use-package delsel                     ; Replace the selection upon insert
   :defer t
   :init (delete-selection-mode))
 
@@ -90,32 +76,8 @@
   :bind (([remap kill-ring-save] . easy-kill)
          ([remap mark-sexp]      . easy-mark)))
 
-(use-package adaptive-wrap              ; Better line wrap
-  :ensure t
-  :hook (visual-line-mode . adaptive-wrap-prefix-mode)
-  :config (setq-default adaptive-wrap-extra-indent 2))
-
-(use-package visual-fill-column         ; Fill column wrapping
-  :ensure t
-  :bind ("C-c t v" . visual-fill-column-mode)
-  :hook ((visual-line-mode . visual-fill-column-mode)
-         (text-mode        . visual-fill-column-mode))
-  :config
-  ;; Split windows vertically despite large margins, because Emacs otherwise
-  ;; refuses to vertically split windows with large margins
-  (validate-setq split-window-preferred-function
-                 #'visual-fill-column-split-window-sensibly))
-
-(use-package align                      ; Align text in buffers
-  :bind (("C-c x a a" . align)
-         ("C-c x a c" . align-current)))
-
-(use-package ialign                     ; Visual align-regexp
-  :ensure t
-  :bind ("C-c x a i" . ialign))
-
 ;; Free C-m and make it different from RET
-(define-key input-decode-map [?\C-m] [C-m])
+(when (display-graphic-p) (define-key input-decode-map [?\C-m] [C-m]))
 
 (use-package multiple-cursors        ; Easily place multiple cursors in a buffer
   :ensure t
@@ -200,35 +162,6 @@
    global-auto-revert-non-file-buffers t
    ;; Auto-revert files opened via TRAMP
    auto-revert-remote-files t))
-
-(use-package copyright                  ; Deal with copyright notices
-  :defer t
-  :config
-  (validate-setq
-   ;; Use ranges to denote consecutive years
-   copyright-year-ranges t
-   ;; Limit copyright changes to my own copyright
-   copyright-names-regexp (regexp-quote user-full-name)))
-
-(use-package olivetti                   ; Distraction-free interface
-  :ensure t
-  :bind ("C-c t r" . olivetti-mode)
-  :config (validate-setq olivetti-hide-mode-line t))
-
-(use-package tildify                    ; Insert non-breaking spaces on the fly
-  :bind ("C-c x t" . tildify-region)
-  :hook ((text-mode  . tildify-mode)
-         (latex-mode . (lambda ()
-                         ;; Use the right space for LaTeX
-                         (setq-local tildify-space-string "~")))))
-
-(use-package unfill                     ; Smart fill/unfill paragraph
-  :ensure t
-  :bind ([remap fill-paragraph] . unfill-toggle))
-
-(use-package string-edit                ; Edit strings in a separate buffer
-  :ensure t
-  :bind ("C-c x s" . string-edit-at-point))
 
 ;; Disable tabs, but given them proper width
 (setq-default indent-tabs-mode nil
@@ -635,10 +568,6 @@ Add this to `kill-buffer-query-functions'."
 
 (validate-setq window-combination-resize t) ; Size new windows proportionally
 
-(use-package fullframe                 ; Generalized execution in a single frame
-  :ensure t
-  :defer t)
-
 (use-package eyebrowse                  ; Easy workspaces creation and switching
   :ensure t
   :init (eyebrowse-mode t)
@@ -648,27 +577,6 @@ Add this to `kill-buffer-query-functions'."
    eyebrowse-mode-line-style 'always
    eyebrowse-new-workspace t
    eyebrowse-wrap-around t))
-
-(use-package windmove                   ; Quickly move between windows
-  :bind (("S-<up>"    . windmove-up)
-         ("S-<down>"  . windmove-down)
-         ("S-<left>"  . windmove-left)
-         ("S-<right>" . windmove-right)))
-
-(use-package ace-window                 ; Better movements between windows
-  :ensure t
-  :bind (("C-x o"   . ace-window)
-         ("C-c w w" . ace-window)
-         ("C-c w s" . ace-swap-window))
-  :config (validate-setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
-
-(use-package ediff-wind                 ; Ediff window management
-  :defer t
-  :config
-  ;; Prevent Ediff from spamming the frame
-  (validate-setq
-   ediff-window-setup-function #'ediff-setup-windows-plain
-   ediff-split-window-function #'split-window-horizontally))
 
 (validate-setq
  scroll-conservatively 1000
@@ -680,28 +588,6 @@ Add this to `kill-buffer-query-functions'."
  recenter-positions '(top middle bottom)
  ;; Disable mouse scrolling acceleration
  mouse-wheel-progressive-speed nil)
-
-(use-package bookmark                   ; Bookmarks to files and directories
-  :bind
-  ;; Bind "C-x 4 r" to something more useful
-  ;; than `find-file-read-only-other-window'
-  ("C-x 4 r" . bookmark-jump-other-window)
-  :config
-  (validate-setq bookmark-completion-ignore-case nil)
-  (bookmark-maybe-load-default-file))
-
-(use-package avy-jump                   ; Jump to characters in buffers
-  :ensure avy
-  :bind (("C-c j"   . avy-goto-word-1)
-         ("C-c n b" . avy-pop-mark)
-         ("C-c n j" . avy-goto-char-2)
-         ("C-c n t" . avy-goto-char-timer)
-         ("C-c n w" . avy-goto-word-1)))
-
-(use-package outline                    ; Navigate outlines in buffers
-  :defer t
-  :hook ((prog-mode . outline-minor-mode)
-         (text-mode . outline-minor-mode)))
 
 (use-package beginend                   ; Redefine M-< and M-> for some modes
   :ensure t
