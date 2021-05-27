@@ -602,6 +602,12 @@ Add this to `kill-buffer-query-functions'."
          ("M-g z" . dumb-jump-go-prefer-external-other-window))
   :config (validate-setq dumb-jump-selector 'ivy))
 
+(use-package windmove                   ; Quickly move between windows
+  :bind (("S-<up>"    . windmove-up)
+         ("S-<down>"  . windmove-down)
+         ("S-<left>"  . windmove-left)
+         ("S-<right>" . windmove-right)))
+
 (use-package elisp-def             ; Macro-aware go-to-definition for Emacs Lisp
   :ensure t
   :bind (:map emacs-lisp-mode-map
