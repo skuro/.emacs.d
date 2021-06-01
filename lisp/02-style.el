@@ -211,6 +211,10 @@
   :ensure t
   :commands fontify-face-mode)
 
+(use-package emojify
+  :ensure t
+  :hook (after-init . global-emojify-mode))
+
 ;; Use a powerline-enabled font
 (set-frame-font "Meslo LG M DZ for Powerline")
 
