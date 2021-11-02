@@ -49,6 +49,7 @@
   :ensure t
   :mode (("\\.boot$" . clojure-mode)
          ("\\.clj$"  . clojure-mode)
+         ("\\.cljc$"  . clojure-mode)
          ("\\.cljs$" . clojurescript-mode)
          ("\\.edn$"  . clojure-mode)
          ("\\.bb$" . clojure-mode))
@@ -72,11 +73,7 @@
     (reporting 1))
 
   ;; Add linting
-  (require 'flycheck-clj-kondo)
-
-  :custom
-  ;; Avoid https://github.com/clojure-emacs/clojure-mode/issues/525
-  (clojure-align-separator 'group "[skuro] Support binding forms with arbitrary newline breaks"))
+  (require 'flycheck-clj-kondo))
 
 (use-package clojure-mode-extra-font-locking ; Extra font-locking for Clojure
   :ensure t)

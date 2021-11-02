@@ -130,6 +130,7 @@
                 mode-line-buffer-identification " " mode-line-position
                 (vc-mode vc-mode)
                 (multiple-cursors-mode mc/mode-line)
+                org-timer-mode-line-string
                 " " mode-line-modes
                 mode-line-end-spaces))
 
