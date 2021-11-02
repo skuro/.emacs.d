@@ -72,6 +72,18 @@
   :config
   (validate-setq org-agenda-restore-windows-after-quit t))
 
+(use-package org-clock
+  :after org
+  :config
+  ;; Play sound when timer ends
+  (when (file-exists-p "/usr/share/sounds/sound-icons/prompt.wav")
+    (validate-setq org-clock-sound "/usr/share/sounds/sound-icons/prompt.wav"))
+
+  (add-hook 'org-clock-out-hook
+            '(lambda ()
+               (setq org-mode-line-string nil)
+               (force-mode-line-update))))
+
 (use-package org-capture                ; Fast note taking
   :after org
   :bind ("C-c c" . org-capture)
@@ -124,15 +136,29 @@
   :init (add-hook 'org-mode-hook #'org-bullets-mode)
   :config (validate-setq org-bullets-bullet-list '("◉" "○" "●" "►" "◇" "◎")))
 
-(use-package org-noter
-  :ensure t)
+;; (use-package org-noter
+;;   :ensure t)
 
-(use-package org-pdftools
-  :hook (org-mode . org-pdftools-setup-link))
+;; (use-package org-pdftools
+;;   :ensure t
+;;   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-cliplink               ; Insert links from the clipboard
   :ensure t
   :bind ("C-c o i" . org-cliplink))
+
+(use-package deft                       ; Search through collections of text files
+  :ensure t
+  :custom
+  (deft-extensions '("org" "md" "txt"))
+  (deft-directory "~/Dropbox/zettelkast")
+  (deft-use-filename-as-title t))
+
+(use-package zetteldeft                 ; A Zettelkast implementation on top of `deft'
+  :ensure t
+  :pin "melpa-unstable"
+  :after deft
+  :config (zetteldeft-set-classic-keybindings))
 
 (provide '03-org)
 
