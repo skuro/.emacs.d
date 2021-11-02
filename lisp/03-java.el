@@ -7,32 +7,17 @@
 
 ;;; Commentary:
 
-;; This file configures my Java IDE
+;; This file configures LSP services
 
 ;;; Code:
 
 ;;; Env stuff
 
-(use-package lsp-mode
-  :ensure t
-  :config)
-
-(use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
-  :ensure t
-  :commands lsp-ui-mode)
-
 (use-package lsp-java                   ; LSP for Java
   :ensure t
-  :after  lsp
+  :after  lsp-mode
   :config
   (add-hook 'java-mode-hook 'lsp))
-
-(use-package dap-mode
-  :ensure t
-  :after lsp-mode
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
 
 (provide '03-java)
 
