@@ -696,6 +696,11 @@ Add this to `kill-buffer-query-functions'."
   :ensure t
   :mode ("\\.tpl\\'" . mustache-mode))
 
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
+
 ;;;###autoload
 (defun skuro/open-buffer-file-with-app ()
   "Open the file associated with the current buffer using an external application."
