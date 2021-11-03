@@ -112,7 +112,8 @@
                    "JAVA_OPTS"          ; Options for Java processes
                    ))
   :init
-  (exec-path-from-shell-initialize))
+  (when (not (memq window-system '(w32)))
+    (exec-path-from-shell-initialize)))
 
 ;; Set separate custom file for the customize interface
 (defconst skuro/custom-file (locate-user-emacs-file "custom.el")
