@@ -379,7 +379,8 @@ With arg N, insert N newlines."
  ("S-<return>"                   . skuro/smart-open-line)
  ("C-o"                          . skuro/open-line-with-reindent)
  ("C-s-<backspace>"              . skuro/smart-backward-kill-line)
- ("M-<delete>"                   . kill-word))
+ ("M-<delete>"                   . kill-word)
+ ("<backtab>"                    . skuro/toggle-hiding))
 
 (use-package which-key                  ; Show help popups for prefix keys
   :ensure t
