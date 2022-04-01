@@ -136,13 +136,6 @@
   :init (add-hook 'org-mode-hook #'org-bullets-mode)
   :config (validate-setq org-bullets-bullet-list '("◉" "○" "●" "►" "◇" "◎")))
 
-;; (use-package org-noter
-;;   :ensure t)
-
-;; (use-package org-pdftools
-;;   :ensure t
-;;   :hook (org-mode . org-pdftools-setup-link))
-
 (use-package org-cliplink               ; Insert links from the clipboard
   :ensure t
   :bind ("C-c o i" . org-cliplink))
