@@ -109,33 +109,6 @@
 (use-package cider-util                 ; Common utilities
   :ensure cider)
 
-(use-package clj-refactor               ; Refactoring utilities
-  :ensure t
-  :hook (clojure-mode . (lambda ()
-                          (clj-refactor-mode 1)
-                          (yas-minor-mode 1)
-                          (cljr-add-keybindings-with-prefix "C-c RET")))
-  :config
-  (validate-setq
-   cljr-suppress-middleware-warnings t
-   cljr-add-ns-to-blank-clj-files t
-   cljr-auto-sort-ns t
-   cljr-favor-prefix-notation nil
-   cljr-favor-private-functions nil
-   cljr-warn-on-eval nil
-   cljr-hotload-dependencies t
-   cljr-inject-dependencies-at-jack-in nil)
-
-  (validate-setq
-   cljr-clojure-test-declaration "[clojure.test :refer :all]"
-   cljr-cljs-clojure-test-declaration
-   "[cljs.test :refer-macros [deftest is use-fixtures]]")
-
-  (advice-add 'cljr-add-require-to-ns :after
-              (lambda (&rest _)
-                (yas-next-field)
-                (yas-next-field))))
-
 (provide '03-clojure)
 
 ;; Local Variables:
