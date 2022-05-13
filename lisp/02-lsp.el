@@ -26,8 +26,13 @@
 
 (use-package lsp-mode
   :ensure t
+  :defer t
+  :hook (lsp-mode . (lambda ()
+                      (let ((lsp-keymap-prefix "s-u"))
+                        (lsp-enable-which-key-integration))))
   :config
-  (validate-setq lsp-keymap-prefix "M-s l"))
+  (validate-setq lsp-lens-enable t)
+  (define-key lsp-mode-map (kbd "s-u") lsp-command-map))
 
 (use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
   :ensure t

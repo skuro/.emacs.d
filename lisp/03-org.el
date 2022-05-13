@@ -11,6 +11,8 @@
 
 ;;; Code:
 
+(require 'plantuml-mode)
+
 (use-package org                        ; The almighty Org
   :ensure t
   :bind (("C-c o l" . org-store-link)
@@ -61,7 +63,10 @@
   (unbind-key "S-<return>" org-mode-map) ; Free S-RET (see: 00-editing.el)
 
   ;; load org-babel backends
-  (require 'ob-python))
+  (require 'ob-python)
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+
+  (validate-setq org-plantuml-jar-path plantuml-jar-path))
 
 (use-package org-agenda                 ; Dynamic task and appointment lists
   :after org
