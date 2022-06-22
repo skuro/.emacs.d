@@ -109,6 +109,15 @@
 (use-package cider-util                 ; Common utilities
   :ensure cider)
 
+(use-package kaocha-runner
+  :ensure t
+  :bind (:map cider-mode-map
+              ("C-c , k a" . kaocha-runner-run-all-tests)
+              ("C-c , k t" . kaocha-runner-run-test-at-point)
+              ("C-c , k n" . kaocha-runner-run-tests)
+              ("C-c , k w" . kaocha-runner-show-warnings)
+              ("C-c , k h" . kaocha-runner-hide-windows)))
+
 (provide '03-clojure)
 
 ;; Local Variables:
