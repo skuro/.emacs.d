@@ -76,6 +76,11 @@
   :bind (([remap kill-ring-save] . easy-kill)
          ([remap mark-sexp]      . easy-mark)))
 
+(use-package avy
+  :ensure t
+  :bind (("s-r s" . avy-goto-char-timer)
+         ("s-r l" . avy-goto-line)))
+
 ;; Free C-m and make it different from RET
 (when (display-graphic-p) (define-key input-decode-map [?\C-m] [C-m]))
 
