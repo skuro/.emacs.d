@@ -16,12 +16,11 @@
 
 (setq-default python-shell-interpreter "python3")
 
-(use-package lsp-python-ms
+(use-package lsp-pyright
   :ensure t
-  :init (setq lsp-python-ms-auto-install-server t)
   :hook (python-mode . (lambda ()
-                         (require 'lsp-python-ms)
-                         (lsp))))  ; or lsp-deferred
+                         (require 'lsp-pyright)
+                         (lsp))))
 
 (provide '03-python)
 

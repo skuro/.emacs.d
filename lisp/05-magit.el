@@ -82,17 +82,17 @@
   (remove-hook 'git-commit-finish-query-functions
                #'git-commit-check-style-conventions))
 
-(use-package gitconfig-mode             ; Git configuration mode
-  :ensure t
-  :defer t)
+;; (use-package gitconfig-mode             ; Git configuration mode
+;;   :ensure t
+;;   :defer t)
 
-(use-package gitignore-mode             ; .gitignore mode
-  :ensure t
-  :defer t)
+;; (use-package gitignore-mode             ; .gitignore mode
+;;   :ensure t
+;;   :defer t)
 
-(use-package gitattributes-mode         ; Git attributes mode
-  :ensure t
-  :defer t)
+;; (use-package gitattributes-mode         ; Git attributes mode
+;;   :ensure t
+;;   :defer t)
 
 (use-package git-link
   :ensure t
@@ -101,9 +101,9 @@
 (use-package closql
   :ensure t)
 
-(use-package forge
-  :ensure t
-  :after magit)
+;; (use-package forge
+;;   :ensure t
+;;   :after magit)
 
 (provide '05-magit)
 

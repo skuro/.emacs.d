@@ -100,7 +100,7 @@
    company-tooltip-align-annotations t
    company-tooltip-flip-when-above t
    ;; Easy navigation to candidates with M-<n>
-   company-show-numbers ''left)
+   company-show-quick-access ''left)
 
   (setq-default company-tooltip-align-annotations t))
 

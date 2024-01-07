@@ -144,10 +144,7 @@
 
 (use-package minions                    ; A minor-mode menu for the mode line
   :ensure t
-  :init (minions-mode)
-  :config (validate-setq minions-direct '(cider-mode
-                                          flycheck-mode
-                                          overwrite-mode)))
+  :init (minions-mode))
 
 (use-package moody                      ; Tabs and ribbons for the mode line
   :ensure t
@@ -214,10 +211,11 @@
 
 (use-package emojify
   :ensure t
+  :pin "melpa-unstable"
   :hook (after-init . global-emojify-mode))
 
 ;; Use a powerline-enabled font
-(set-frame-font "Meslo LG M DZ for Powerline")
+(set-frame-font "Victor Mono")
 
 (provide '02-style)
 

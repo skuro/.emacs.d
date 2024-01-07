@@ -34,6 +34,7 @@
 
 (use-package ignoramus                  ; Ignore uninteresting files everywhere
   :ensure t
+  :pin    melpa-unstable
   :config
   ;; Ignore some additional directories and file extensions
   (dolist (name '(".cask"))

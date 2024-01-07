@@ -83,6 +83,16 @@
   :defer t
   :config (validate-setq nrepl-hide-special-buffers t))
 
+(defun skuro/paredit-disable-ret-hook ()
+  "Remove `paredit' interference with various REPL enter key.
+  Remove this one after CIDER v1.8.0 is released."
+  (let ((oldmap (cdr (assoc 'paredit-mode minor-mode-map-alist)))
+        (newmap (make-sparse-keymap)))
+    (set-keymap-parent newmap oldmap)
+    (define-key newmap (kbd "RET") nil)
+    (make-local-variable 'minor-mode-overriding-map-alist)
+    (push `(paredit-mode . ,newmap) minor-mode-overriding-map-alist)))
+
 (use-package cider-repl                 ; REPL interactions with CIDER
   :ensure cider
   :bind (:map cider-repl-mode-map
@@ -92,7 +102,8 @@
   :hook ((cider-repl-mode . company-mode)
          (cider-repl-mode . eldoc-mode)
          (cider-repl-mode . subword-mode)
-         (cider-repl-mode . paredit-mode))
+         (cider-repl-mode . paredit-mode)
+         (cider-repl-mode . skuro/paredit-disable-ret-hook))
   :config
   (validate-setq
    cider-repl-wrap-history t
@@ -100,7 +111,7 @@
    cider-repl-history-file (locate-user-emacs-file "cider-repl-history")
    cider-repl-display-help-banner nil
    cider-repl-result-prefix ";; => "
-   cider-repl-use-pretty-printing t))
+  cider-repl-use-pretty-printing t))
 
 (use-package cider-stacktrace           ; Navigate stacktrace
   :ensure cider

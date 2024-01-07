@@ -25,6 +25,7 @@
 ;;; Code:
 
 (use-package lsp-mode
+  :pin "melpa-unstable"
   :ensure t
   :defer t
   :hook (lsp-mode . (lambda ()
@@ -35,6 +36,7 @@
   (define-key lsp-mode-map (kbd "s-u") lsp-command-map))
 
 (use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
+  :pin "melpa-unstable"
   :ensure t
   :commands lsp-ui-mode)
 
