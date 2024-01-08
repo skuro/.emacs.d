@@ -19,7 +19,7 @@
 (use-package magit                      ; The best Git client out there
   :ensure t
   :bind (("C-c v c" . magit-clone)
-         ("C-c v d" . magit-dispatch-popup)
+         ("C-c v d" . magit-dispatch)
          ("C-c v g" . magit-blame)
          ("C-c v l" . magit-log-buffer-file)
          ("C-x g" . magit-status)
