@@ -47,6 +47,7 @@
          ("\\.json.template\\'" . json-mode))
   :hook ((json-mode . enable-paredit-mode)
          (json-mode . hs-minor-mode))
+  :bind (("C-c C-c" . json-pretty-print))
   :config
   (bind-key "{" #'paredit-open-curly json-mode-map)
   (bind-key "}" #'paredit-close-curly json-mode-map))
