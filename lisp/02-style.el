@@ -85,7 +85,7 @@
 (setq-default cursor-in-non-selected-windows nil)
 
 (use-package iso-transl                 ; Fix dead characters
-             :demand t)
+  :demand t)
 
 (use-package page-break-lines           ; Better looking break lines
   :ensure t
@@ -150,10 +150,7 @@
   :ensure t
   :config
   (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
-
-  (if (string-equal system-type "darwin") ; OS X has a weird color scheme
-      (setq moody-slant-function #'moody-slant-apple-rgb)))
+  (moody-replace-vc-mode))
 
 (use-package paren                      ; Highlight paired delimiters
   :init (show-paren-mode))
