@@ -94,9 +94,6 @@
   :ensure t
   :mode ("docker-compose.yml\\'". docker-compose-mode))
 
-(use-package docker-tramp              ; TRAMP integration for docker containers
-  :ensure t)
-
 (use-package nov                        ; Featureful EPUB reader mode
   :ensure t
   :mode ("\\.epub\\'" . nov-mode))
