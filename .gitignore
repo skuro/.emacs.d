@@ -4,3 +4,5 @@ var
 custom.el
 /cider-repl-history
 /.cask
+auto-save-list
+eln-cache

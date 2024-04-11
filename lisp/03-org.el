@@ -27,13 +27,12 @@
    org-default-notes-file (expand-file-name "notes.org" org-directory)
    org-startup-with-inline-images t)
 
-  ;; Use Org structures and tables in message mode
+  ;; Use Org tables in message mode
   (add-hook 'message-mode-hook #'turn-on-orgtbl)
-  (add-hook 'message-mode-hook #'turn-on-orgstruct++)
 
   ;; Define TODO workflow states
   (validate-setq
-   org-todo-keywords '("TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))
+   org-todo-keywords '("TODO(t)" "PROCESSING(p)" "|" "CANCELLED(c)" "DONE(d)"))
 
   ;; Define Agenda files for GTD
   (validate-setq org-agenda-files (list (expand-file-name "~/Dropbox/org")))
@@ -85,9 +84,9 @@
     (validate-setq org-clock-sound "/usr/share/sounds/sound-icons/prompt.wav"))
 
   (add-hook 'org-clock-out-hook
-            '(lambda ()
-               (setq org-mode-line-string nil)
-               (force-mode-line-update))))
+            #'(lambda ()
+                (setq org-mode-line-string nil)
+                (force-mode-line-update))))
 
 (use-package org-capture                ; Fast note taking
   :after org

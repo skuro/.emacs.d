@@ -47,5 +47,9 @@
   (dap-mode t)
   (dap-ui-mode t))
 
+(use-package eglot
+  :config
+  (validate-setq eglot-connect-timeout 90))
+
 (provide '02-lsp)
 ;;; 02-lsp.el ends here
