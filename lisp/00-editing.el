@@ -225,7 +225,7 @@
   (interactive)
   (set-face-attribute 'default nil :height
                       (+ (face-attribute 'default :height) 10)))
-;;;===autoload
+;;;###autoload
 (defun skuro/font-- ()
   (interactive)
   (set-face-attribute 'default nil :height
