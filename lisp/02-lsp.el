@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(require 'validate)
+
 (use-package lsp-mode
   :pin "melpa-unstable"
   :ensure t
@@ -49,7 +51,10 @@
 
 (use-package eglot
   :config
-  (validate-setq eglot-connect-timeout 90))
+  (validate-setq eglot-connect-timeout 90)
+  (defun skuro/eglot-format-buffer-before-save ()
+    "Add a local hook for formatting the current buffer with eglot before saving."
+    (add-hook 'before-save-hook #'eglot-format-buffer nil t)))
 
 (provide '02-lsp)
 ;;; 02-lsp.el ends here

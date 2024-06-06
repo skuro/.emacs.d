@@ -11,6 +11,9 @@
 
 ;;; Code:
 
+(require 'validate)
+(require 'eglot)
+
 ;;; Env stuff
 (setenv "JAVA_HOME" ;; lein won't work with Java 9+
         "/opt/homebrew/opt/openjdk/")
@@ -47,9 +50,8 @@
 
 (use-package clojure-mode               ; Major mode for Clojure files
   :ensure t
-  :mode (("\\.boot$" . clojure-mode)
-         ("\\.clj$"  . clojure-mode)
-         ("\\.cljc$"  . clojure-mode)
+  :mode (("\\.clj$"  . clojure-mode)
+         ("\\.cljc$"  . clojurec-mode)
          ("\\.cljs$" . clojurescript-mode)
          ("\\.edn$"  . clojure-mode)
          ("\\.bb$" . clojure-mode))
@@ -57,20 +59,21 @@
          (clojure-mode . subword-mode)
          (clojure-mode . paredit-mode)
          (clojure-mode . hs-minor-mode)
-         (clojure-mode . skuro/prog-mode-prettifies))
+         (clojure-mode . eglot-ensure)
+         (clojure-mode . #'skuro/prog-mode-prettifies))
   :config
   ;; Fix indentation of some common macros
   (define-clojure-indent
-    (for-all 1)
-    (defroutes 'defun)
-    (GET 2)
-    (POST 2)
-    (PUT 2)
-    (DELETE 2)
-    (HEAD 2)
-    (ANY 2)
-    (context 2)
-    (reporting 1))
+   (for-all 1)
+   (defroutes 'defun)
+   (GET 2)
+   (POST 2)
+   (PUT 2)
+   (DELETE 2)
+   (HEAD 2)
+   (ANY 2)
+   (context 2)
+   (reporting 1))
 
   ;; Add linting
   (require 'flycheck-clj-kondo))
