@@ -31,18 +31,6 @@
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))
 
-(use-package aggressive-indent          ; Automatically indent code
-  :ensure t
-  :bind ("C-c t i" . aggressive-indent-mode)
-  :hook ((lisp-mode       . aggressive-indent-mode)
-         (emacs-lisp-mode . aggressive-indent-mode)
-         (clojure-mode    . aggressive-indent-mode))
-  :config
-  ;; Free C-c C-q, used in Org and in CIDER
-  (unbind-key "C-c C-q" aggressive-indent-mode-map)
-
-  (add-to-list 'aggressive-indent-excluded-modes 'cider-repl-mode))
-
 (use-package whitespace-cleanup-mode    ; Cleanup whitespace in buffers
   :ensure t
   :bind (("C-c t w" . whitespace-cleanup-mode)
