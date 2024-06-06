@@ -147,6 +147,9 @@
 ;; Confirm before quitting Emacs
 (validate-setq confirm-kill-emacs #'y-or-n-p)
 
+;; Retrieve GPG passkey directly from minibuffer
+(validate-setq epa-pinentry-mode 'loopback)
+
 (defconst skuro/personal-packages-folder (expand-file-name "lisp" user-emacs-directory))
 
 ;;;
