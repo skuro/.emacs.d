@@ -6,3 +6,4 @@ custom.el
 /.cask
 auto-save-list
 eln-cache
+tree-sitter
