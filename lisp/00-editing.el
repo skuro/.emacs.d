@@ -222,11 +222,13 @@
 
 ;;;###autoload
 (defun skuro/font-+ ()
+  "Increase the font size."
   (interactive)
   (set-face-attribute 'default nil :height
                       (+ (face-attribute 'default :height) 10)))
 ;;;###autoload
 (defun skuro/font-- ()
+  "Decrease the font size."
   (interactive)
   (set-face-attribute 'default nil :height
                       (- (face-attribute 'default :height) 10)))
