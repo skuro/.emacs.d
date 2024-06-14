@@ -323,6 +323,11 @@ Otherwise copy the non-directory part only."
    dired-du-size-format t
    dired-du-update-headers t))
 
+(use-package xref
+  :config
+  (validate-setq
+   xref-search-program 'ripgrep))
+
 (use-package projectile                 ; Project management
   :ensure t
   :init (projectile-mode)

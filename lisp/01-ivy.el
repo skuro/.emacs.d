@@ -118,8 +118,8 @@ instead."
   (let ((current-prefix-arg)
         (dir (if use-current-dir
                  default-directory
-               (condition-case err
-                   (projectile-project-root)
+               (condition-case _err
+                   (project-root (project-current))
                  (error default-directory)))))
     (funcall 'counsel-rg initial-input dir)))
 
