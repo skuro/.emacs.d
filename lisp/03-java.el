@@ -13,11 +13,25 @@
 
 ;;; Env stuff
 
-(use-package lsp-java                   ; LSP for Java
-  :ensure t
-  :after  lsp-mode
-  :config
-  (add-hook 'java-mode-hook 'lsp))
+(require 'no-littering)
+(require 'eglot)
+
+;; eglot configuration
+(defun skuro/java-eglot-server-programs-concat (_interactive project)
+  "Function to return the CONTACT for the java `eglot-server-programs'.
+INTERACTIVE is t when calling `eglot' interactively.
+PROJECT is whatever Eglot discovered via `project-find-functions'."
+  (let* ((project-root (cdr project))
+         (jdtls-bin (expand-file-name "jdtls" "~/.local/bin"))
+         (config-path (expand-file-name "jdtls/config_mac" no-littering-var-directory))
+         (data-path (expand-file-name ".lsp" project-root)))
+    (message (concat "Starting " jdtls-bin " with config " config-path " and data stored in " data-path))
+    (list jdtls-bin
+          "-configuration" config-path
+          "-data" data-path)))
+
+(add-to-list 'eglot-server-programs
+             `(java-mode . skuro/java-eglot-server-programs-concat))
 
 (provide '03-java)
 

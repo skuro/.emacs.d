@@ -28,6 +28,8 @@
 (bind-key "s-<end>" 'next-buffer)
 (bind-key "C-M-<backspace>" 'window-toggle-side-windows)
 
+(unbind-key "s-t" global-map)           ; Do not trigger the menu-set-font popup
+
 (use-package electric                   ; Electric modes package
   :config (add-hook 'after-init-hook #'electric-indent-mode))
 
@@ -574,6 +576,12 @@ Add this to `kill-buffer-query-functions'."
    eyebrowse-new-workspace t
    eyebrowse-wrap-around t))
 
+(use-package mwheel
+  :config
+  (validate-setq
+   ;; Disable mouse scrolling acceleration
+   mouse-wheel-progressive-speed nil))
+
 (validate-setq
  scroll-conservatively 1000
  ;; Move to beg/end of buffer before signalling an error
@@ -581,9 +589,7 @@ Add this to `kill-buffer-query-functions'."
  ;; Ensure M-v always undoes C-v
  scroll-preserve-screen-position 'always
  ;; Start recentre from top
- recenter-positions '(top middle bottom)
- ;; Disable mouse scrolling acceleration
- mouse-wheel-progressive-speed nil)
+ recenter-positions '(top middle bottom))
 
 (use-package beginend                   ; Redefine M-< and M-> for some modes
   :ensure t
@@ -642,8 +648,10 @@ Add this to `kill-buffer-query-functions'."
   :mode (("\\.puml" . plantuml-mode)
          ("\\.plantuml" . plantuml-mode)
          ("\\.iuml" . plantuml-mode))
-  :config (validate-setq plantuml-output-type "png"
-                         plantuml-jar-path    (expand-file-name "~/.plantuml/plantuml.jar")))
+  :config
+  (validate-setq plantuml-output-type "png"
+                 plantuml-jar-path    (expand-file-name "~/.plantuml/plantuml.jar"))
+  (validate-setq plantuml-default-exec-mode 'jar))
 
 (use-package image+ :ensure t :after 'image-mode
   :init
@@ -761,6 +769,15 @@ even beep.)"
   (unless (and buffer-read-only kill-read-only-ok)
     ;; Delete lines or make the "Buffer is read-only" error.
     (flush-lines regexp rstart rend interactive)))
+
+(use-package auctex
+  :ensure t
+  :init
+  (load "auctex.el" nil t t)
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil))
 
 (provide '00-editing)
 

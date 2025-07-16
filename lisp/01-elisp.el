@@ -13,6 +13,9 @@
 
 ;;; Elisp
 
+(require 'validate)
+(require 'comint)
+
 (use-package ielm                       ; Emacs Lisp REPL
   :bind ("C-c d i" . ielm)
   :config (bind-key "C-c C-q" #'comint-send-eof inferior-emacs-lisp-mode-map))
@@ -52,6 +55,11 @@
 ;; Use `emacs-lisp-mode' instead of `lisp-interaction-mode' for scratch buffer
 (validate-setq initial-major-mode 'emacs-lisp-mode)
 
+(use-package dash
+  :ensure t
+  :config
+  (global-dash-fontify-mode))
+
 (provide '01-elisp)
 
 ;; Local Variables:
@@ -59,4 +67,4 @@
 ;; indent-tabs-mode: nil
 ;; End:
 
-;;; cs-elisp.el ends here
+;;; 01-elisp.el ends here

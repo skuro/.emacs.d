@@ -148,6 +148,7 @@
 (validate-setq confirm-kill-emacs #'y-or-n-p)
 
 ;; Retrieve GPG passkey directly from minibuffer
+(require 'epg-config)
 (validate-setq epa-pinentry-mode 'loopback)
 
 (defconst skuro/personal-packages-folder (expand-file-name "lisp" user-emacs-directory))
@@ -183,7 +184,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(zetteldeft zenburn-theme yasnippet-snippets whitespace-cleanup-mode which-key web-mode validate use-package tide terraform-mode symbol-overlay super-save sudo-edit solidity-flycheck sbt-mode rust-mode rjsx-mode rainbow-mode rainbow-delimiters pyvenv plantuml-mode pcmpl-git paredit paradox page-break-lines org-cliplink org-bullets nov no-littering mustache-mode moody minions mc-extras magit-gitflow macrostep lsp-ui lsp-python-ms lsp-metals lsp-java lsp-dart kaocha-runner json-mode jinja2-mode ivy-yasnippet ivy-xref ivy-hydra ivy-historian ini-mode image+ ignoramus ibuffer-vc hl-todo highlight-numbers gptel go-mode git-link fullframe fontify-face flycheck-package flycheck-clj-kondo eyebrowse exec-path-from-shell emojify elisp-def easy-kill dumb-jump dockerfile-mode docker-tramp docker-compose-mode direnv diredfl dired-narrow dired-du diminish diff-hl csv-mode counsel-projectile company-web company-statistics company-shell company-restclient company-quickhelp company-math company-ansible closql clojure-mode-extra-font-locking change-inner beginend amx  adoc-mode)))
+   '(zetteldeft zenburn-theme yasnippet-snippets whitespace-cleanup-mode which-key web-mode validate use-package tide terraform-mode symbol-overlay super-save sudo-edit solidity-flycheck sbt-mode rust-mode rjsx-mode rainbow-mode rainbow-delimiters pyvenv plantuml-mode pcmpl-git paredit paradox page-break-lines org-cliplink org-bullets nov no-littering mustache-mode moody minions mc-extras magit-gitflow macrostep lsp-ui lsp-python-ms lsp-metals lsp-java lsp-dart kaocha-runner json-mode jinja2-mode ivy-yasnippet ivy-xref ivy-hydra ivy-historian ini-mode image+ ignoramus ibuffer-vc hl-todo highlight-numbers gptel go-mode git-link fullframe fontify-face flycheck-package flycheck-clj-kondo eyebrowse exec-path-from-shell emojify elisp-def easy-kill dumb-jump dockerfile-mode docker-compose-mode direnv diredfl dired-narrow dired-du diminish diff-hl csv-mode counsel-projectile company-web company-statistics company-shell company-restclient company-quickhelp company-math company-ansible closql clojure-mode-extra-font-locking change-inner beginend amx  adoc-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -196,3 +197,4 @@
 ;; End:
 
 ;;; init.el ends here
+(put 'narrow-to-region 'disabled nil)

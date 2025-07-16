@@ -35,7 +35,6 @@
 
 ;;; Interface
 (use-package frame                      ; Frames
-             :bind ("C-c w f" . toggle-frame-fullscreen)
              :init
              ;; Kill `suspend-frame'
              (unbind-key "C-x C-z")

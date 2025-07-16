@@ -13,6 +13,7 @@
 
 (require 'validate)
 (require 'eglot)
+(require '02-style)
 
 ;;; Env stuff
 (setenv "JAVA_HOME" ;; lein won't work with Java 9+
@@ -31,6 +32,7 @@
               ("C-c m l" . cider-load-all-project-ns))
   :config
   (require 'cider-client)
+  (require 'cider-connection)
 
   (defun skuro/cider-mode-line-info ()
     "Simplify CIDER mode-line indicator."
@@ -50,18 +52,16 @@
 
 (use-package clojure-mode               ; Major mode for Clojure files
   :ensure t
-  :mode (("\\.clj$"  . clojure-mode)
-         ("\\.cljc$"  . clojurec-mode)
-         ("\\.cljs$" . clojurescript-mode)
-         ("\\.edn$"  . clojure-mode)
+  :mode (("\\.edn$"  . clojure-mode)
          ("\\.bb$" . clojure-mode))
-  :hook ((clojure-mode . cider-mode)
-         (clojure-mode . subword-mode)
-         (clojure-mode . paredit-mode)
-         (clojure-mode . hs-minor-mode)
-         (clojure-mode . eglot-ensure)
-         (clojure-mode . #'skuro/prog-mode-prettifies))
   :config
+  (add-hook 'clojure-mode-hook 'cider-mode)
+  (add-hook 'clojure-mode-hook 'subword-mode)
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojure-mode-hook 'hs-minor-mode)
+  (add-hook 'clojure-mode-hook 'eglot-ensure)
+  (add-hook 'clojure-mode-hook #'skuro/prog-mode-prettifies)
+
   ;; Fix indentation of some common macros
   (define-clojure-indent
    (for-all 1)

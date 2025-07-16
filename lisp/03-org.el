@@ -12,6 +12,7 @@
 ;;; Code:
 
 (require 'plantuml-mode)
+(require 'validate)
 
 (use-package org                        ; The almighty Org
   :ensure t
@@ -58,6 +59,16 @@
 
   (add-hook 'org-mode-hook #'skuro/org-ispell)
 
+  (defun skuro/update-clocktable-at-clock-out ()
+    "Automatically update the previous `clocktable' block at clock-out."
+    ;; note: when running as an `org-clock-out-hook' function, `point' is at the current clock-out headline
+    (save-excursion
+      (let ((clocktable (re-search-backward "BEGIN:.*clocktable" nil t)))
+        (goto-char clocktable)
+        (org-ctrl-c-ctrl-c))))
+
+  (add-hook 'org-clock-out-hook #'skuro/update-clocktable-at-clock-out)
+
   (unbind-key "C-'" org-mode-map)        ; Free C-' (see: 00-editing.el)
   (unbind-key "S-<return>" org-mode-map) ; Free S-RET (see: 00-editing.el)
 
@@ -80,13 +91,14 @@
   :after org
   :config
   ;; Play sound when timer ends
-  (when (file-exists-p "/usr/share/sounds/sound-icons/prompt.wav")
-    (validate-setq org-clock-sound "/usr/share/sounds/sound-icons/prompt.wav"))
+  (when (file-exists-p "/System/Library/Sounds/Bottle.aiff")
+    (validate-setq org-clock-sound "/System/Library/Sounds/Bottle.aiff"))
 
   (add-hook 'org-clock-out-hook
             #'(lambda ()
                 (setq org-mode-line-string nil)
-                (force-mode-line-update))))
+                (force-mode-line-update)))
+  (validate-setq org-duration-format '(("h" . t) ("min" . t))))
 
 (use-package org-capture                ; Fast note taking
   :after org
@@ -130,7 +142,7 @@
    org-html-preamble nil
    org-html-postamble nil))
 
-(use-package org-indent ; Dynamic indentation for Org-mode
+(use-package org-indent                 ; Dynamic indentation for Org-mode
   :ensure org
   :bind ("C-c t o" . org-indent-mode)
   :init (add-hook 'org-mode-hook #'org-indent-mode))

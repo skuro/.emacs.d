@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'sql)
+(require 'eglot)
 
 (defun skuro/load-psql-connections
     ()
@@ -43,6 +44,10 @@
                                                                          (string-to-number port-spec))
                                                                        5432))
                                                    (list 'sql-password (funcall (plist-get entry :secret)))))))))
+
+(use-package sql
+  :config
+  (add-to-list 'eglot-server-programs '(sql-mode . ("sqls"))))
 
 (provide '03-sql)
 

@@ -24,9 +24,31 @@
 
 ;;; Code:
 
-(use-package uiua-ts-mode ; a stack based array language, see https://uiua.org
+(require 'validate)
+
+(use-package uiua-ts-mode               ; a stack based array language, see https://uiua.org
   :mode "\\.ua\\'"
   :ensure t)
+
+(use-package kubed                      ; useful mode to interact with Kubernetes
+  :ensure t
+  :config
+  (keymap-global-set "M-s-k" 'kubed-prefix-map))
+
+(use-package sly-asdf
+  :ensure t
+  :defer t)
+
+(use-package sly-quicklisp
+  :ensure t
+  :defer t)
+
+(use-package sly
+  :ensure t
+  :defer t
+  :after (sly-asdf sly-quicklisp)
+  :custom
+  (inferior-lisp-program (executable-find "sbcl")))
 
 (provide '03-various)
 ;;; 03-various.el ends here
