@@ -352,6 +352,11 @@ Otherwise copy the non-directory part only."
               ("r" . counsel-projectile-rg))
   :init (counsel-projectile-mode))
 
+(use-package grep
+  :config
+  (validate-setq grep-program "rg")
+  (validate-setq grep-command "rg --no-heading --line-number "))
+
 (provide '00-files)
 
 ;; Local Variables:
