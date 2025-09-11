@@ -15,7 +15,6 @@
 (use-package web-mode                   ; Major mode for editing web templates
   :ensure t
   :mode (("\\.html?\\'" . web-mode)
-         ("\\.php\\'"   . web-mode)
          ("\\.tpl\\'"   . web-mode))
   :config
   ;; Better JSX syntax-highlighting in web-mode
@@ -44,6 +43,9 @@
          (typescript-mode . tide-hl-identifier-mode)
          (rjsx-mode . tide-setup)
          (before-save . tide-format-before-save)))
+
+(use-package php-ts-mode
+  :mode (("\\.php" . php-ts-mode)))
 
 (provide '04-web)
 
