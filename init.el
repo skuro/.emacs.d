@@ -53,11 +53,6 @@
 ;; For some reason, we still need this otherwise packages are not in 'load-path
 (package-initialize)
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 (eval-when-compile (require 'use-package))
 
 (setq load-prefer-newer t)              ; Always load newer compiled files
