@@ -445,49 +445,6 @@ With arg N, insert N newlines."
                                                    (abbreviate-file-name (buffer-file-name))
                                                  "%b"))))
 
-;; Configure `display-buffer' behaviour for some special buffers
-(validate-setq
- display-buffer-alist
- `(
-   ;; Messages, errors, processes, Calendar and REPLs in the bottom side window
-   (,(rx bos (or "*Apropos"             ; Apropos buffers
-                 "*Man"                 ; Man buffers
-                 "*Help"                ; Help buffers
-                 "*Warnings*"           ; Emacs warnings
-                 "*Process List*"       ; Processes
-                 "*Proced"              ; Proced processes list
-                 "*Compile-Log*"        ; Emacs byte compiler log
-                 "*compilation"         ; Compilation buffers
-                 "*Flycheck errors*"    ; Flycheck error list
-                 "*Calendar"            ; Calendar window
-                 "*version"             ; Emacs version from my custom function
-                 "*cider-repl"          ; CIDER REPL
-                 "*intero"              ; Intero REPL
-                 "*idris-repl"          ; Idris REPL
-                 "*ielm"                ; IELM REPL
-                 "*SQL"                 ; SQL REPL
-                 "*Cargo"               ; Cargo process buffers
-                 ;; AUCTeX command output
-                 (and (1+ nonl) " output*")))
-    (display-buffer-reuse-window display-buffer-in-side-window)
-    (side . bottom)
-    (reusable-frames . visible)
-    (window-height . 0.45))
-   ;; Open shell in a single window
-   (,(rx bos "*shell")
-    (display-buffer-same-window)
-    (reusable-frames . nil))
-   ;; Open PDFs in the right side window
-   (,(rx bos "*pdf")
-    (display-buffer-reuse-window display-buffer-in-side-window)
-    (side . right)
-    (reusable-frames . visible)
-    (window-width . 0.5))
-   ;; Let `display-buffer' reuse visible frames for all buffers.  This must
-   ;; be the last entry in `display-buffer-alist', because it overrides any
-   ;; previous entry with more specific actions.
-   ("." nil (reusable-frames . visible))))
-
 (use-package ibuf-ext                   ; Extensions for Ibuffer
   :config
   ;; Do not show empty groups
@@ -778,6 +735,31 @@ even beep.)"
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
   (setq-default TeX-master nil))
+
+(defun skuro/open-folder ()
+  "Open the system file explorer in the directory of the current buffer."
+  (interactive)
+  (let ((dir (if buffer-file-name
+                 (file-name-directory buffer-file-name)
+               default-directory)))
+    (cond
+     ;; Windows
+     ((eq system-type 'windows-nt)
+      (shell-command (format "explorer \"%s\"" (replace-regexp-in-string "/" "\\\\" dir))))
+
+     ;; macOS
+     ((eq system-type 'darwin)
+      (shell-command (format "open \"%s\"" dir)))
+
+     ;; Linux and other Unix-like systems
+     ((or (eq system-type 'gnu/linux)
+          (eq system-type 'berkeley-unix)
+          (eq system-type 'gnu/kfreebsd))
+      (shell-command (format "xdg-open \"%s\"" dir)))
+
+     ;; Fallback
+     (t
+      (message "Unsupported operating system")))))
 
 (provide '00-editing)
 

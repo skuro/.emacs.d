@@ -48,6 +48,32 @@
   :config (require 'mcp-hub)
   :hook (after-init . mcp-hub-start-all-server))
 
+(use-package eca                               ; Emacs Code Assistant, by Eric Dallo
+  :ensure t
+  :pin melpa-unstable)
+
+(use-package monet                             ; Claude Code IDE API implementation
+  :vc (:url "https://github.com/stevemolitor/monet" :rev :newest))
+
+(use-package claude-code
+  :ensure t
+  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+  :config
+  ;; use vterm instead of eat
+  (validate-setq claude-code-terminal-backend 'eat)
+
+  ;; IDE integration with Monet
+  (add-hook 'claude-code-process-environment-functions
+            #'monet-start-server-function)
+
+  (monet-mode 1)
+
+  (claude-code-mode)
+  :bind-keymap ("C-c a" . claude-code-command-map)
+
+  :bind
+  ;; Make "M" cycle thru Claude auto-accept/plan/confirm modes after invoking claude-code-cycle-mode / C-c M.
+  (:repeat-map my-claude-code-map ("M" . claude-code-cycle-mode)))
 
 (provide '05-ai)
 ;;; 05-ai.el ends here

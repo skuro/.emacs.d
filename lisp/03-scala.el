@@ -46,9 +46,5 @@
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (setq sbt:program-options '("-Dsbt.supershell=false")))
 
-;; Add metals backend for lsp-mode
-(use-package lsp-metals
-  :ensure t)
-
 (provide '03-scala)
 ;;; 03-scala.el ends here

@@ -43,7 +43,8 @@
 (setq package-archives
       '(("gnu"            . "https://elpa.gnu.org/packages/")
         ("melpa"          . "https://stable.melpa.org/packages/")
-        ("melpa-unstable" . "https://melpa.org/packages/")))
+        ("melpa-unstable" . "https://melpa.org/packages/")
+        ("nongnu"         . "https://elpa.nongnu.org/nongnu/")))
 
 (setq package-archive-priorities
       '(("melpa"          . 50)

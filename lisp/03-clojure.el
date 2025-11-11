@@ -54,6 +54,8 @@
   :ensure t
   :mode (("\\.edn$"  . clojure-mode)
          ("\\.bb$" . clojure-mode))
+  :bind  (:map clojure-mode-map
+               ("M-s-r" . cider-switch-to-repl-buffer))
   :config
   (add-hook 'clojure-mode-hook 'cider-mode)
   (add-hook 'clojure-mode-hook 'subword-mode)

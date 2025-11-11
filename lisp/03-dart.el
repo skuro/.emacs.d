@@ -27,20 +27,6 @@
 (use-package dart-mode
   :ensure t)
 
-(defun skuro/find-dart-flutter-sdk-dir ()
-  "Find the Dart Flutter SDK directory.
-Credits to @Walheimat https://github.com/emacs-lsp/lsp-dart/issues/107#issuecomment-944959495."
-  (when-let* ((flutter-bin (executable-find "flutter"))
-              (sdk-dir (string-trim (shell-command-to-string "flutter sdk-path"))))
-    sdk-dir))
-
-(use-package lsp-dart
-  :after lsp-mode
-  :ensure t
-  :hook (dart-mode . lsp)
-  :custom
-  (lsp-dart-flutter-sdk-dir (skuro/find-dart-flutter-sdk-dir)))
-
 (provide '03-dart)
 
 ;; Local Variables:

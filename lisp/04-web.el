@@ -38,14 +38,28 @@
 (use-package tide
   :ensure t
   :bind (("C-c C-d C-d" . tide-documentation-at-point))
-  :after (typescript-mode company flycheck)
+  :after (typescript-mode typescript-ts-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
+         (typescript-ts-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
+         (typescript-ts-mode . tide-hl-identifier-mode)
          (rjsx-mode . tide-setup)
          (before-save . tide-format-before-save)))
 
 (use-package php-ts-mode
   :mode (("\\.php" . php-ts-mode)))
+
+(use-package typescript-ts-mode
+  :mode (("\\.mtx" . typescript-ts-mode)
+         ("\\.tsx" . typescript-ts-mode)))
+
+;;
+;; Astro
+;;
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+      (append '((".*\\.astro\\'" . astro-mode))
+              auto-mode-alist))
 
 (provide '04-web)
 

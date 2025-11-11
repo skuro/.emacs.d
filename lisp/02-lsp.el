@@ -26,35 +26,17 @@
 
 (require 'validate)
 
-(use-package lsp-mode
-  :pin "melpa-unstable"
-  :ensure t
-  :defer t
-  :hook (lsp-mode . (lambda ()
-                      (let ((lsp-keymap-prefix "s-u"))
-                        (lsp-enable-which-key-integration))))
-  :config
-  (validate-setq lsp-lens-enable t)
-  (define-key lsp-mode-map (kbd "s-u") lsp-command-map))
-
-(use-package lsp-ui                     ; LSP ui elements (sideline, menus, etc.)
-  :pin "melpa-unstable"
-  :ensure t
-  :commands lsp-ui-mode)
-
-(use-package dap-mode                   ; Debug Adapter Protocol
-  :ensure t
-  :after lsp-mode
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
-
 (use-package eglot
   :config
   (validate-setq eglot-connect-timeout 90)
   (defun skuro/eglot-format-buffer-before-save ()
     "Add a local hook for formatting the current buffer with eglot before saving."
-    (add-hook 'before-save-hook #'eglot-format-buffer nil t)))
+    (add-hook 'before-save-hook #'eglot-format-buffer nil t))
+
+  (add-to-list 'eglot-server-programs
+               '(astro-mode . ("astro-ls" "--stdio"
+                               :initializationOptions
+                               (:typescript (:tsdk "./node_modules/typescript/lib"))))))
 
 (provide '02-lsp)
 ;;; 02-lsp.el ends here
