@@ -23,10 +23,6 @@
     "Completion rules for the `man' command."
     (pcomplete-here pcomplete-man-user-commands)))
 
-(use-package pcmpl-git                  ; pcomplete for git
-  :ensure t
-  :after pcomplete)
-
 (use-package autoinsert                 ; Auto insert custom text
   :init
   (auto-insert-mode)
