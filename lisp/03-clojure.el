@@ -116,7 +116,8 @@
    cider-repl-history-file (locate-user-emacs-file "cider-repl-history")
    cider-repl-display-help-banner nil
    cider-repl-result-prefix ";; => "
-  cider-repl-use-pretty-printing t))
+  cider-repl-use-pretty-printing t)
+  (bind-key "C-;" 'cider-switch-to-repl-buffer cider-mode-map))
 
 (use-package cider-stacktrace           ; Navigate stacktrace
   :ensure cider

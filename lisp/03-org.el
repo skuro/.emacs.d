@@ -97,8 +97,7 @@
   (add-hook 'org-clock-out-hook
             #'(lambda ()
                 (setq org-mode-line-string nil)
-                (force-mode-line-update)))
-  (validate-setq org-duration-format '(("h" . t) ("min" . t))))
+                (force-mode-line-update))))
 
 (use-package org-capture                ; Fast note taking
   :after org
@@ -141,6 +140,11 @@
    ;; Turn off preamble and postamble in HTML export
    org-html-preamble nil
    org-html-postamble nil))
+
+(use-package ox-md
+  :ensure nil
+  :defer 3
+  :after org)
 
 (use-package org-indent                 ; Dynamic indentation for Org-mode
   :ensure org

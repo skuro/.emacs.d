@@ -50,8 +50,5 @@
   :custom
   (inferior-lisp-program (executable-find "sbcl")))
 
-(use-package vterm
-  :ensure t)
-
 (provide '03-various)
 ;;; 03-various.el ends here

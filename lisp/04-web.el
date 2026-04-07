@@ -18,11 +18,13 @@
          ("\\.tpl\\'"   . web-mode))
   :config
   ;; Better JSX syntax-highlighting in web-mode
-  (defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (defun skuro/tweak-jsx (orig &rest args)
+    "Better JSX syntax-highlighting in web-mode"
     (if (equal web-mode-content-type "jsx")
         (let ((web-mode-enable-part-face nil))
-          ad-do-it)
-      ad-do-it)))
+          (apply orig args))
+      (apply orig args)))
+  (advice-add 'tweak-jsx :around #'skuro/tweak-jsx))
 
 (use-package json-mode
   :ensure t
@@ -32,6 +34,7 @@
          (json-mode . hs-minor-mode))
   :bind (("C-c C-c" . json-pretty-print))
   :config
+  (require 'paredit)
   (bind-key "{" #'paredit-open-curly json-mode-map)
   (bind-key "}" #'paredit-close-curly json-mode-map))
 

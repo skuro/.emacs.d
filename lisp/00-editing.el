@@ -20,6 +20,8 @@
       (back-to-indentation)
     (beginning-of-line)))
 
+(global-hl-line-mode +1)               ; always highlight the current line
+
 (bind-key "C-1" 'recenter)
 (bind-key "C-<tab>" 'hs-toggle-hiding)
 (bind-key "s-<left>" 'skuro/to-beginning-or-indentation)
@@ -52,11 +54,11 @@
               ([remap transpose-words] . nil))
   :init (global-subword-mode 1))
 
-(use-package expand-region      ; Increase the selected region by semantic units
+(use-package expand-region              ; Increase the selected region by semantic units
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package change-inner              ; Change contents based on semantic units
+(use-package change-inner               ; Change contents based on semantic units
   :ensure t
   :bind (("M-i" . change-inner)
          ("M-o" . change-outer)))
@@ -74,7 +76,7 @@
 ;; Free C-m and make it different from RET
 (when (display-graphic-p) (define-key input-decode-map [?\C-m] [C-m]))
 
-(use-package multiple-cursors        ; Easily place multiple cursors in a buffer
+(use-package multiple-cursors           ; Easily place multiple cursors in a buffer
   :ensure t
   :bind (("C-'"         . set-rectangular-region-anchor)
          ("<C-m> ^"     . mc/edit-beginnings-of-lines)

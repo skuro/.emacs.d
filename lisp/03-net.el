@@ -23,7 +23,8 @@
    tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*"
    auto-save-file-name-transforms nil)
 
-  (add-to-list 'backup-directory-alist (cons tramp-file-name-regexp nil)))
+  (add-to-list 'backup-directory-alist (cons tramp-file-name-regexp nil))
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 (use-package paradox                    ; Better package manager interface
   :ensure t

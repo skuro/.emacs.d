@@ -39,11 +39,17 @@
     "Automatically activate virtual environment using uv."
     (when (and (executable-find "uv")
                (locate-dominating-file default-directory "pyproject.toml"))
-      (let ((venv-path (string-trim
-                        (shell-command-to-string "uv venv --quiet && uv run python -c 'import sys; print(sys.prefix)' 2>/dev/null || echo ''"))))
-        (when (and (not (string-empty-p venv-path))
-                   (file-directory-p venv-path))
-          (pyvenv-activate venv-path)))))
+      (let* ((project-dir (locate-dominating-file default-directory "pyproject.toml"))
+             (venv-dir (expand-file-name ".venv" project-dir)))
+        ;; first check if a .venv directory already exists and if so use that venv
+        (if (file-directory-p venv-dir)
+            (pyvenv-activate venv-dir)
+          ;; otherwise fallback to uv managed venv
+          (let ((venv-path (string-trim
+                            (shell-command-to-string "uv venv --quiet && uv run python -c 'import sys; print(sys.prefix)' 2>/dev/null || echo ''"))))
+            (when (and (not (string-empty-p venv-path))
+                       (file-directory-p venv-path))
+              (pyvenv-activate venv-path)))))))
 
   (add-hook 'python-mode-hook #'skuro/auto-activate-uv-venv))
 
